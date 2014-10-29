@@ -1,0 +1,4 @@
+org\books\application\BookNotFoundException.class
+org\books\persistence\Book.class
+org\books\application\Bookstore.class
+org\books\application\XmlParser.class

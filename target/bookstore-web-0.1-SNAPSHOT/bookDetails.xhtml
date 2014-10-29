@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <title>Detail</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <h:outputStylesheet name="styles.css"/>
+    </h:head>
+    <h:body>
+        <h:form id="form"  rendered="#{not empty catalogBean.book}">
+            <h:outputText value="Book Details" styleClass="heading"/>
+            <h:panelGrid columns="2" rendered="#{not empty catalogBean.book}">
+                <h:outputText value="ISBN" />
+                <h:outputText value="#{catalogBean.book.isbn}" />
+                <h:outputText value="Title" />
+                <h:outputText value="#{catalogBean.book.title}" />
+                <h:outputText value="Authors" />
+                <h:outputText value="#{catalogBean.book.authors}" />
+                <h:outputText value="Publisher" />
+                <h:outputText value="#{catalogBean.book.publisher}" />
+                <h:outputText value="Publication Year" />
+                <h:outputText value="#{catalogBean.book.publicationYear}" />
+                <h:outputText value="Binding" />
+                <h:outputText value="#{catalogBean.book.binding}" />
+                <h:outputText value="Number of Pages" />
+                <h:outputText value="#{catalogBean.book.numberOfPages}" />
+                <h:outputText value="Price" />
+                <h:outputText value="#{catalogBean.book.price}" />                
+            </h:panelGrid>
+
+            <h:commandLink value="back" action="catalogSearch" />
+        </h:form>
+        <h:form id="uebung3" rendered="#{not empty catalogBean.selectedBook}">
+            <h:outputText value="Book Details" styleClass="heading"/>
+            <h:panelGrid columns="2">
+                <h:outputText value="ISBN" />
+                <h:outputText value="#{catalogBean.selectedBook.isbn}" />
+                <h:outputText value="Title" />
+                <h:outputText value="#{catalogBean.selectedBook.title}" />
+                <h:outputText value="Authors" />
+                <h:outputText value="#{catalogBean.selectedBook.authors}" />
+                <h:outputText value="Publisher" />
+                <h:outputText value="#{catalogBean.selectedBook.publisher}" />
+                <h:outputText value="Publication Year" />
+                <h:outputText value="#{catalogBean.selectedBook.publicationYear}" />
+                <h:outputText value="Binding" />
+                <h:outputText value="#{catalogBean.selectedBook.binding}" />
+                <h:outputText value="Number of Pages" />
+                <h:outputText value="#{catalogBean.selectedBook.numberOfPages}" />
+                <h:outputText value="Price" />
+                <h:outputText value="#{catalogBean.selectedBook.price}" />                
+            </h:panelGrid>
+
+            <h:link value="back" outcome="catalogSearch" />
+        </h:form>
+    </h:body>
+</html>
