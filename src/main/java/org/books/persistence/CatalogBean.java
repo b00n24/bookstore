@@ -27,6 +27,8 @@ public class CatalogBean implements Serializable {
 
     @Inject
     private Bookstore bookstore;
+    @Inject
+    private ShoppingCartBean shoppingCart;
 
     private String isbn;
     private Book book;
@@ -38,97 +40,86 @@ public class CatalogBean implements Serializable {
     private Book selectedBook;
 
     public void setIsbn(String isbn) {
-        this.isbn = isbn;
+	this.isbn = isbn;
     }
 
     public String getIsbn() {
-        return isbn;
+	return isbn;
     }
 
     public Book getBook() {
-        return book;
+	return book;
     }
 
     public String getMessage() {
-        return message;
+	return message;
     }
 
     public void setKeywords(String keywords) {
-        this.keywords = keywords;
+	this.keywords = keywords;
     }
 
     public String getKeywords() {
-        return keywords;
+	return keywords;
     }
 
     public List<Book> getBooks() {
-        return books;
+	return books;
     }
 
     public void setBooks(List<Book> books) {
-        this.books = books;
+	this.books = books;
     }
 
     public Book getSelectedBook() {
-        return selectedBook;
+	return selectedBook;
     }
 
     public void setSelectedBook(Book selectedBook) {
-        this.selectedBook = selectedBook;
+	this.selectedBook = selectedBook;
     }
 
-    // Uebung 1
-//    public Object findBook() {
-//        Logger.getLogger(CatalogBean.class.getName()).log(Level.INFO, "> findBook: {0}", isbn);
-//        try {
-//            this.book = bookstore.findBook(isbn);
-//            Logger.getLogger(CatalogBean.class.getName()).log(Level.INFO, "- found: {0}", book);
-//        } catch (BookNotFoundException ex) {
-//            Logger.getLogger(CatalogBean.class.getName()).log(Level.SEVERE, null, ex);
-//            this.message = "No book found for ISBN: " + this.isbn;
-//            this.book = null;
-//            FacesMessage facesMessage = new FacesMessage(message);
-//            FacesContext.getCurrentInstance().addMessage(null, facesMessage);
-//        }
-//        return null;
-//    }
     private void reset() {
-        this.message = null;
-        this.book = null;
-        this.selectedBook = null;
-        this.books = null;
+	this.message = null;
+	this.book = null;
+	this.selectedBook = null;
+	this.books = null;
     }
 
 //    Uebung 2
     public Object findBook() {
-        Logger.getLogger(CatalogBean.class.getName()).log(Level.INFO, "> findBook: {0}", isbn);
-        reset();
-        try {
-            this.book = bookstore.findBook(isbn);
-        } catch (BookNotFoundException ex) {
-            this.message = "No book found for ISBN: " + this.isbn;
-            this.book = null;
-            FacesMessage facesMessage = new FacesMessage(message);
-            FacesContext.getCurrentInstance().addMessage(null, facesMessage);
-            return null;
-        }
-        return "bookDetails";
+	Logger.getLogger(CatalogBean.class.getName()).log(Level.INFO, "> findBook: {0}", isbn);
+	reset();
+	try {
+	    this.book = bookstore.findBook(isbn);
+	} catch (BookNotFoundException ex) {
+	    this.message = "No book found for ISBN: " + this.isbn;
+	    this.book = null;
+	    FacesMessage facesMessage = new FacesMessage(message);
+	    FacesContext.getCurrentInstance().addMessage(null, facesMessage);
+	    return null;
+	}
+	return "bookDetails";
     }
 
     // Uebung 3
     public void searchBooks() {
-        reset();
-        this.books = bookstore.searchBooks(keywords);
-        if (books.isEmpty()) {
-            message = "No matching books found";
-            FacesMessage facesMessage = new FacesMessage(message);
-            FacesContext.getCurrentInstance().addMessage(null, facesMessage);
-        }
+	reset();
+	this.books = bookstore.searchBooks(keywords);
+	if (books.isEmpty()) {
+	    message = "No matching books found";
+	    FacesMessage facesMessage = new FacesMessage(message);
+	    FacesContext.getCurrentInstance().addMessage(null, facesMessage);
+	}
     }
 
     public String selectBook(Book book) {
-        this.selectedBook = book;
-        return "bookDetails";
+	this.selectedBook = book;
+	return "bookDetails";
+    }
+    
+    public void addToShoppingCart(Book book) {
+	shoppingCart.add(book);
     }
 
 }
