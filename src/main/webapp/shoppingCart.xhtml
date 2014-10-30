@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" 
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
@@ -14,6 +9,12 @@ and open the template in the editor.
         <h:outputStylesheet name="styles.css"/>
     </h:head>
     <h:body>
+	<h:outputLabel value="Shopping Cart" styleClass="heading" />
+	<p/>
+	<h:link outcome="catalogSearch.xhtml" value="Catalog"/>
+	|
+	<h:link outcome="shoppingCart.xhtml" value="ShoppingCart"/>
+	<p/>
 	<h:form id="shoppingCartForm">
 	    <h:dataTable value="#{shoppingCartBean.items}" var="item" rendered="#{not empty shoppingCartBean.items}">
 		<h:column>
@@ -34,15 +35,25 @@ and open the template in the editor.
 		    </f:facet>
 		    <h:outputText value="#{item.book.price}"/>
 		</h:column>
-
 		<h:column>
 		    <f:facet name="header">
 			<h:outputText value="Quantity" />
 		    </f:facet>
-		    <h:inputText value="#{item.quantity}"/>
+		    <h:inputText value="#{item.quantity}" size="3"/>
+		</h:column>
+		<h:column>
+		    <f:facet name="header">
+			<h:outputText value="Action" />
+		    </f:facet>
+		    <h:commandButton value="Remove" action="#{shoppingCartBean.remove(item)}"/>
 		</h:column>
 	    </h:dataTable>
-	</h:form>
 
+	    <h:outputText value="Your cart is empty" rendered="#{empty shoppingCartBean.items}" />
+	    <p/>
+	    <h:commandButton value="Update" rendered="#{not empty shoppingCartBean.items}"/>
+	</h:form>
+	<p/>
+	<h:link value="back" outcome="catalogSearch" />
     </h:body>
 </html>

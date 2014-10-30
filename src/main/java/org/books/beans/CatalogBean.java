@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.books.persistence;
+package org.books.beans;
 
 import java.io.Serializable;
 import java.util.List;
@@ -16,6 +16,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import org.books.application.BookNotFoundException;
 import org.books.application.Bookstore;
+import org.books.persistence.Book;
 
 /**
  *

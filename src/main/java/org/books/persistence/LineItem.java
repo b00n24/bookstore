@@ -5,6 +5,8 @@
  */
 package org.books.persistence;
 
+import java.util.Objects;
+
 /**
  *
  * @author AWy
@@ -35,4 +37,7 @@ public class LineItem {
 	this.book = book;
     }
 
+    public void add() {
+	this.quantity++;
+    }
 }
