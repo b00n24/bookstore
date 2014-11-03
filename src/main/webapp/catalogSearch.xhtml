@@ -13,34 +13,6 @@
     <ui:define name="content">
         <h:messages style="color:red"/>
 
-        <h:form id="searchByIsbnForm">
-            <h:outputText value="#{texts.catalogFindBook}" styleClass="heading"/>
-            <h:panelGrid columns="3">
-                <h:outputText value="#{texts.catalogIsbn}"/>
-                <h:inputText id="isbn" value="#{catalogBean.isbn}" required="true"/>
-                <h:commandButton value="Search" action="#{catalogBean.findBook}"/>
-            </h:panelGrid>
-
-            <h:panelGrid columns="2" rendered="#{not empty catalogBean.book}">
-                <h:outputText value="#{texts.catalogIsbn}" />
-                <h:outputText value="#{catalogBean.book.isbn}" />
-                <h:outputText value="#{texts.catalogTitle}" />
-                <h:outputText value="#{catalogBean.book.title}" />
-                <h:outputText value="#{texts.catalogAuthors}" />
-                <h:outputText value="#{catalogBean.book.authors}" />
-                <h:outputText value="#{texts.catalogPublisher}" />
-                <h:outputText value="#{catalogBean.book.publisher}" />
-                <h:outputText value="#{texts.catalogPublicationYear}" />
-                <h:outputText value="#{catalogBean.book.publicationYear}" />
-                <h:outputText value="#{texts.catalogBinding}" />
-                <h:outputText value="#{catalogBean.book.binding}" />
-                <h:outputText value="#{texts.catalogNumberOfPages}" />
-                <h:outputText value="#{catalogBean.book.numberOfPages}" />
-                <h:outputText value="#{texts.catalogPrice}" />
-                <h:outputText value="#{catalogBean.book.price}" />                
-            </h:panelGrid>
-        </h:form>
-
         <h:form id="searchByTextForm">
             <h:outputText value="#{texts.catalogSearchBook}" styleClass="heading"/>
             <h:panelGrid columns="3">
@@ -52,19 +24,19 @@
             <h:dataTable value="#{catalogBean.books}" var="book" rendered="#{not empty catalogBean.books}">
                 <h:column>
                     <f:facet name="header">
-                        <h:outputText value="#{texts.catalogTitle}" />
+                        <h:outputText value="#{texts.title}" />
                     </f:facet>
                     <h:commandLink action="#{catalogBean.selectBook(book)}" value="#{book.title}"/>
                 </h:column>
                 <h:column>
                     <f:facet name="header">
-                        <h:outputText value="#{texts.catalogPrice}" />
+                        <h:outputText value="#{texts.price}" />
                     </f:facet>
                     <h:outputText value="#{book.price}"/>
                 </h:column>
                 <h:column>
                     <f:facet name="header">
-                        <h:outputText value="Action" />
+                        <h:outputText value="#{texts.action}" />
                     </f:facet>
                     <h:commandButton value="+" action="#{catalogBean.addToShoppingCart(book)}"/>
                 </h:column>

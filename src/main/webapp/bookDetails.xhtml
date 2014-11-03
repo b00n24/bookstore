@@ -9,30 +9,30 @@
         <h:outputStylesheet name="styles.css"/>
     </h:head>
     <h:body>
-	<h:outputText value="Book Details" styleClass="heading"/>
+        <h:outputText value="#{texts.detailPageTitle}" styleClass="heading"/>
 	<p/>
 
         <h:form id="bookDetailsForm" rendered="#{not empty catalogBean.selectedBook}">
             <h:panelGrid columns="2">
-                <h:outputText value="ISBN" />
+                <h:outputText value="#{texts.isbn}" />
                 <h:outputText value="#{catalogBean.selectedBook.isbn}" />
-                <h:outputText value="Title" />
+                <h:outputText value="#{texts.title}" />
                 <h:outputText value="#{catalogBean.selectedBook.title}" />
-                <h:outputText value="Authors" />
+                <h:outputText value="#{texts.detailAuthors}" />
                 <h:outputText value="#{catalogBean.selectedBook.authors}" />
-                <h:outputText value="Publisher" />
+                <h:outputText value="#{texts.detailPublisher}" />
                 <h:outputText value="#{catalogBean.selectedBook.publisher}" />
-                <h:outputText value="Publication Year" />
+                <h:outputText value="#{texts.detailPublicationYear}" />
                 <h:outputText value="#{catalogBean.selectedBook.publicationYear}" />
-                <h:outputText value="Binding" />
+                <h:outputText value="#{texts.detailBinding}" />
                 <h:outputText value="#{catalogBean.selectedBook.binding}" />
-                <h:outputText value="Number of Pages" />
+                <h:outputText value="#{texts.detailNumberOfPages}" />
                 <h:outputText value="#{catalogBean.selectedBook.numberOfPages}" />
-                <h:outputText value="Price" />
+                <h:outputText value="#{texts.price}" />
                 <h:outputText value="#{catalogBean.selectedBook.price}" />                
             </h:panelGrid>
 	    <p/>
-            <h:commandLink value="back" action="#{navigationBean.goBack()}" />
+            <h:commandLink value="#{texts.back}" action="#{navigationBean.goBack()}" />
         </h:form>
     </h:body>
 </html>
