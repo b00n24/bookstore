@@ -13,6 +13,7 @@
             <base-name>bundles.texts</base-name>
             <var>texts</var>
         </resource-bundle>
+	<message-bundle>bundles.messages</message-bundle>
     </application>
 
 </faces-config>

@@ -11,16 +11,16 @@
     </ui:define>
 
     <ui:define name="content">
-        <h:messages style="color:red"/>
 
         <h:form id="searchByTextForm">
             <h:outputText value="#{texts.catalogSearchBook}" styleClass="heading"/>
             <h:panelGrid columns="3">
-                <h:outputText value="#{texts.catalogKeyword}"/>
-                <h:inputText id="keyword" value="#{catalogBean.keywords}" required="true"/>
+		<h:outputLabel value="#{texts.catalogKeyword}"/>
+		<h:inputText id="keyword" value="#{catalogBean.keywords}" required="true"/>
                 <h:commandButton value="#{texts.btnSearch}" action="#{catalogBean.searchBooks()}"/>
             </h:panelGrid>
-
+	    <h:messages showSummary="true" showDetail="false" errorClass="error" infoClass="info" layout="table" />
+	    <p/>
             <h:dataTable value="#{catalogBean.books}" var="book" rendered="#{not empty catalogBean.books}">
                 <h:column>
                     <f:facet name="header">

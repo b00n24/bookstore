@@ -6,17 +6,14 @@
 package org.books.beans;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
-import org.books.application.BookNotFoundException;
 import org.books.application.Bookstore;
 import org.books.persistence.Book;
+import org.books.util.MessageFactory;
 
 /**
  *
@@ -25,6 +22,8 @@ import org.books.persistence.Book;
 @Named("catalogBean")
 @SessionScoped
 public class CatalogBean implements Serializable {
+
+    private static final String INFO_NO_BOOK_FOUND = "org.books.infoNoBookFound";
 
     @Inject
     private Bookstore bookstore;
@@ -35,11 +34,10 @@ public class CatalogBean implements Serializable {
 
     private String isbn;
     private Book book;
-    private String message;
 
     // Uebung 3
     private String keywords;
-    private List<Book> books;
+    private List<Book> books = new ArrayList<>();
     private Book selectedBook;
 
     public void setIsbn(String isbn) {
@@ -52,10 +50,6 @@ public class CatalogBean implements Serializable {
 
     public Book getBook() {
 	return book;
-    }
-
-    public String getMessage() {
-	return message;
     }
 
     public void setKeywords(String keywords) {
@@ -83,36 +77,16 @@ public class CatalogBean implements Serializable {
     }
 
     private void reset() {
-	this.message = null;
 	this.book = null;
 	this.selectedBook = null;
-	this.books = null;
+	this.books.clear();
     }
 
-//    Uebung 2
-    public Object findBook() {
-	Logger.getLogger(CatalogBean.class.getName()).log(Level.INFO, "> findBook: {0}", isbn);
-	reset();
-	try {
-	    this.book = bookstore.findBook(isbn);
-	} catch (BookNotFoundException ex) {
-	    this.message = "No book found for ISBN: " + this.isbn;
-	    this.book = null;
-	    FacesMessage facesMessage = new FacesMessage(message);
-	    FacesContext.getCurrentInstance().addMessage(null, facesMessage);
-	    return null;
-	}
-	return navigationBean.goToBookDetails();
-    }
-
-    // Uebung 3
     public void searchBooks() {
 	reset();
 	this.books = bookstore.searchBooks(keywords);
 	if (books.isEmpty()) {
-	    message = "No matching books found";
-	    FacesMessage facesMessage = new FacesMessage(message);
-	    FacesContext.getCurrentInstance().addMessage(null, facesMessage);
+	    MessageFactory.info(INFO_NO_BOOK_FOUND);
 	}
     }
 
@@ -120,7 +94,7 @@ public class CatalogBean implements Serializable {
 	this.selectedBook = book;
 	return navigationBean.goToBookDetails();
     }
-    
+
     public void addToShoppingCart(Book book) {
 	shoppingCart.add(book);
     }
