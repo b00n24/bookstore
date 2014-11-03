@@ -1,23 +1,16 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <h:head>
-        <title>Catalog Search</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <h:outputStylesheet name="styles.css"/>
-    </h:head>
-    <h:body>
-	<h:form id="navigatonForm">
-	    <h:outputLabel value="Catalog" styleClass="heading" />
-	    <p/>
-	    <h:commandLink action="#{navigationBean.goToCatalogSearch()}" value="Catalog"/>
-	    |
-	    <h:commandLink action="#{navigationBean.goToShoppingCart()}" value="ShoppingCart"/>
-	    <p/>
-	    <h:messages style="color:red"/>
-	</h:form>
+<ui:composition template="template.xhtml" 
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:define name="header">
+        <ui:include src="header.xhtml">
+            <ui:param name="pageTitle" value="Catalog" />
+        </ui:include>
+    </ui:define>
+
+    <ui:define name="content">
+        <h:messages style="color:red"/>
 
         <h:form id="searchByIsbnForm">
             <h:outputText value="Find Book" styleClass="heading"/>
@@ -68,7 +61,7 @@
                     </f:facet>
                     <h:outputText value="#{book.price}"/>
                 </h:column>
-		<h:column>
+                <h:column>
                     <f:facet name="header">
                         <h:outputText value="Action" />
                     </f:facet>
@@ -76,5 +69,5 @@
                 </h:column>
             </h:dataTable>
         </h:form>
-    </h:body>
-</html>
+    </ui:define>
+</ui:composition>

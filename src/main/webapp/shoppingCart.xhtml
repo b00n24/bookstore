@@ -1,61 +1,54 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" 
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <h:head>
-        <title>Cart</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <h:outputStylesheet name="styles.css"/>
-    </h:head>
-    <h:body>
-	<h:form id="navigatonForm">
-	    <h:outputLabel value="Catalog" styleClass="heading" />
-	    <p/>
-	    <h:commandLink action="#{navigationBean.goToCatalogSearch()}" value="Catalog"/>
-	    |
-	    <h:commandLink action="#{navigationBean.goToShoppingCart()}" value="ShoppingCart"/>
-	    <p/>
-	</h:form>
-	<h:form id="shoppingCartForm">
-	    <h:dataTable value="#{shoppingCartBean.items}" var="item" rendered="#{not empty shoppingCartBean.items}">
-		<h:column>
-		    <f:facet name="header">
-			<h:outputText value="Title" />
-		    </f:facet>
-		    <h:commandLink action="#{catalogBean.selectBook(item.book)}" value="#{item.book.title}"/>
-		</h:column>
-		<h:column>
-		    <f:facet name="header">
-			<h:outputText value="ISBN" />
-		    </f:facet>
-		    <h:outputText value="#{item.book.isbn}"/>
-		</h:column>
-		<h:column>
-		    <f:facet name="header">
-			<h:outputText value="Price" />
-		    </f:facet>
-		    <h:outputText value="#{item.book.price}"/>
-		</h:column>
-		<h:column>
-		    <f:facet name="header">
-			<h:outputText value="Quantity" />
-		    </f:facet>
-		    <h:inputText value="#{item.quantity}" size="3"/>
-		</h:column>
-		<h:column>
-		    <f:facet name="header">
-			<h:outputText value="Action" />
-		    </f:facet>
-		    <h:commandButton value="Remove" action="#{shoppingCartBean.remove(item)}"/>
-		</h:column>
-	    </h:dataTable>
+<ui:composition template="template.xhtml" 
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:define name="header">
+        <ui:include src="header.xhtml">
+            <ui:param name="pageTitle" value="Shopping Cart" />
+        </ui:include>
+    </ui:define>
 
-	    <h:outputText value="Your cart is empty" rendered="#{empty shoppingCartBean.items}" />
+    <ui:define name="content">
+        <h:form id="shoppingCartForm">
+            <h:dataTable value="#{shoppingCartBean.items}" var="item" rendered="#{not empty shoppingCartBean.items}">
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Title" />
+                    </f:facet>
+                    <h:commandLink action="#{catalogBean.selectBook(item.book)}" value="#{item.book.title}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="ISBN" />
+                    </f:facet>
+                    <h:outputText value="#{item.book.isbn}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Price" />
+                    </f:facet>
+                    <h:outputText value="#{item.book.price}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Quantity" />
+                    </f:facet>
+                    <h:inputText value="#{item.quantity}" size="3"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Action" />
+                    </f:facet>
+                    <h:commandButton value="Remove" action="#{shoppingCartBean.remove(item)}"/>
+                </h:column>
+            </h:dataTable>
+
+            <h:outputText value="Your cart is empty" rendered="#{empty shoppingCartBean.items}" />
+            <p/>
+            <h:commandButton value="Update" rendered="#{not empty shoppingCartBean.items}"/>
 	    <p/>
-	    <h:commandButton value="Update" rendered="#{not empty shoppingCartBean.items}"/>
-	</h:form>
-	<p/>
-	<h:link value="back" outcome="#{navigationBean.goBack()}" />
-    </h:body>
-</html>
+	    <h:commandLink value="back" action="#{navigationBean.goBack()}" />
+        </h:form>
+    </ui:define>
+</ui:composition>

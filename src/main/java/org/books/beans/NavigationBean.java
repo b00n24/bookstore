@@ -21,7 +21,7 @@ public class NavigationBean implements Serializable {
 
     public String goToCatalogSearch() {
 	saveCurrentPage();
-	return PAGE_SHOPPING_CART;
+	return PAGE_CATALOG_SEARCH;
     }
 
     public String goToBookDetails() {
