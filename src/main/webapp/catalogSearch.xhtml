@@ -9,14 +9,16 @@
         <h:outputStylesheet name="styles.css"/>
     </h:head>
     <h:body>
-	<h:outputLabel value="Catalog" styleClass="heading" />
-	<p/>
-	<h:link outcome="catalogSearch.xhtml" value="Catalog"/>
-	|
-	<h:link outcome="shoppingCart.xhtml" value="ShoppingCart"/>
-	<p/>
-        <h:messages style="color:red"/>
-	
+	<h:form id="navigatonForm">
+	    <h:outputLabel value="Catalog" styleClass="heading" />
+	    <p/>
+	    <h:commandLink action="#{navigationBean.goToCatalogSearch()}" value="Catalog"/>
+	    |
+	    <h:commandLink action="#{navigationBean.goToShoppingCart()}" value="ShoppingCart"/>
+	    <p/>
+	    <h:messages style="color:red"/>
+	</h:form>
+
         <h:form id="searchByIsbnForm">
             <h:outputText value="Find Book" styleClass="heading"/>
             <h:panelGrid columns="3">
@@ -52,7 +54,7 @@
                 <h:inputText id="keyword" value="#{catalogBean.keywords}" required="true"/>
                 <h:commandButton value="Search" action="#{catalogBean.searchBooks()}"/>
             </h:panelGrid>
-	    
+
             <h:dataTable value="#{catalogBean.books}" var="book" rendered="#{not empty catalogBean.books}">
                 <h:column>
                     <f:facet name="header">

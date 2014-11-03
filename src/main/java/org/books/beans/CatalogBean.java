@@ -30,6 +30,8 @@ public class CatalogBean implements Serializable {
     private Bookstore bookstore;
     @Inject
     private ShoppingCartBean shoppingCart;
+    @Inject
+    private NavigationBean navigationBean;
 
     private String isbn;
     private Book book;
@@ -100,7 +102,7 @@ public class CatalogBean implements Serializable {
 	    FacesContext.getCurrentInstance().addMessage(null, facesMessage);
 	    return null;
 	}
-	return "bookDetails";
+	return navigationBean.goToBookDetails();
     }
 
     // Uebung 3
@@ -116,7 +118,7 @@ public class CatalogBean implements Serializable {
 
     public String selectBook(Book book) {
 	this.selectedBook = book;
-	return "bookDetails";
+	return navigationBean.goToBookDetails();
     }
     
     public void addToShoppingCart(Book book) {

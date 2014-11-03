@@ -9,12 +9,14 @@
         <h:outputStylesheet name="styles.css"/>
     </h:head>
     <h:body>
-	<h:outputLabel value="Shopping Cart" styleClass="heading" />
-	<p/>
-	<h:link outcome="catalogSearch.xhtml" value="Catalog"/>
-	|
-	<h:link outcome="shoppingCart.xhtml" value="ShoppingCart"/>
-	<p/>
+	<h:form id="navigatonForm">
+	    <h:outputLabel value="Catalog" styleClass="heading" />
+	    <p/>
+	    <h:commandLink action="#{navigationBean.goToCatalogSearch()}" value="Catalog"/>
+	    |
+	    <h:commandLink action="#{navigationBean.goToShoppingCart()}" value="ShoppingCart"/>
+	    <p/>
+	</h:form>
 	<h:form id="shoppingCartForm">
 	    <h:dataTable value="#{shoppingCartBean.items}" var="item" rendered="#{not empty shoppingCartBean.items}">
 		<h:column>
@@ -54,6 +56,6 @@
 	    <h:commandButton value="Update" rendered="#{not empty shoppingCartBean.items}"/>
 	</h:form>
 	<p/>
-	<h:link value="back" outcome="catalogSearch" />
+	<h:link value="back" outcome="#{navigationBean.goBack()}" />
     </h:body>
 </html>
