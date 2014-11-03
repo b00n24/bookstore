@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <ui:composition template="template.xhtml" 
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://java.sun.com/jsf/html"
@@ -5,7 +6,7 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
     <ui:define name="header">
         <ui:include src="header.xhtml">
-            <ui:param name="pageTitle" value="Catalog" />
+            <ui:param name="pageTitle" value="#{texts.catalogPageTitle}" />
         </ui:include>
     </ui:define>
 
@@ -13,51 +14,51 @@
         <h:messages style="color:red"/>
 
         <h:form id="searchByIsbnForm">
-            <h:outputText value="Find Book" styleClass="heading"/>
+            <h:outputText value="#{texts.catalogFindBook}" styleClass="heading"/>
             <h:panelGrid columns="3">
-                <h:outputText value="ISBN"/>
+                <h:outputText value="#{texts.catalogIsbn}"/>
                 <h:inputText id="isbn" value="#{catalogBean.isbn}" required="true"/>
                 <h:commandButton value="Search" action="#{catalogBean.findBook}"/>
             </h:panelGrid>
 
             <h:panelGrid columns="2" rendered="#{not empty catalogBean.book}">
-                <h:outputText value="ISBN" />
+                <h:outputText value="#{texts.catalogIsbn}" />
                 <h:outputText value="#{catalogBean.book.isbn}" />
-                <h:outputText value="Title" />
+                <h:outputText value="#{texts.catalogTitle}" />
                 <h:outputText value="#{catalogBean.book.title}" />
-                <h:outputText value="Authors" />
+                <h:outputText value="#{texts.catalogAuthors}" />
                 <h:outputText value="#{catalogBean.book.authors}" />
-                <h:outputText value="Publisher" />
+                <h:outputText value="#{texts.catalogPublisher}" />
                 <h:outputText value="#{catalogBean.book.publisher}" />
-                <h:outputText value="Publication Year" />
+                <h:outputText value="#{texts.catalogPublicationYear}" />
                 <h:outputText value="#{catalogBean.book.publicationYear}" />
-                <h:outputText value="Binding" />
+                <h:outputText value="#{texts.catalogBinding}" />
                 <h:outputText value="#{catalogBean.book.binding}" />
-                <h:outputText value="Number of Pages" />
+                <h:outputText value="#{texts.catalogNumberOfPages}" />
                 <h:outputText value="#{catalogBean.book.numberOfPages}" />
-                <h:outputText value="Price" />
+                <h:outputText value="#{texts.catalogPrice}" />
                 <h:outputText value="#{catalogBean.book.price}" />                
             </h:panelGrid>
         </h:form>
 
         <h:form id="searchByTextForm">
-            <h:outputText value="Search Book" styleClass="heading"/>
+            <h:outputText value="#{texts.catalogSearchBook}" styleClass="heading"/>
             <h:panelGrid columns="3">
-                <h:outputText value="Keyword"/>
+                <h:outputText value="#{texts.catalogKeyword}"/>
                 <h:inputText id="keyword" value="#{catalogBean.keywords}" required="true"/>
-                <h:commandButton value="Search" action="#{catalogBean.searchBooks()}"/>
+                <h:commandButton value="#{texts.btnSearch}" action="#{catalogBean.searchBooks()}"/>
             </h:panelGrid>
 
             <h:dataTable value="#{catalogBean.books}" var="book" rendered="#{not empty catalogBean.books}">
                 <h:column>
                     <f:facet name="header">
-                        <h:outputText value="Title" />
+                        <h:outputText value="#{texts.catalogTitle}" />
                     </f:facet>
                     <h:commandLink action="#{catalogBean.selectBook(book)}" value="#{book.title}"/>
                 </h:column>
                 <h:column>
                     <f:facet name="header">
-                        <h:outputText value="Price" />
+                        <h:outputText value="#{texts.catalogPrice}" />
                     </f:facet>
                     <h:outputText value="#{book.price}"/>
                 </h:column>
