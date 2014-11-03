@@ -48,8 +48,8 @@
             <h:outputText value="Your cart is empty" rendered="#{empty shoppingCartBean.items}" />
             <p/>
             <h:commandButton value="Update" rendered="#{not empty shoppingCartBean.items}"/>
-        </h:form>
         <p/>
-        <h:link value="back" outcome="catalogSearch" />
+        <h:commandLink value="back" action="#{navigationBean.goBack()}" />
+        </h:form>
     </ui:define>
 </ui:composition>
