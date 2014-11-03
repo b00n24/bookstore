@@ -7,7 +7,9 @@ package org.books.beans;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import org.books.persistence.Book;
@@ -21,35 +23,24 @@ import org.books.persistence.LineItem;
 @SessionScoped
 public class ShoppingCartBean implements Serializable {
 
-    private List<LineItem> items = new ArrayList<>();
+    private Map<String, LineItem> itemsMap = new HashMap();
 
     public List<LineItem> getItems() {
-	return items;
-    }
-
-    public void setItems(List<LineItem> items) {
-	this.items = items;
+	return new ArrayList<>(itemsMap.values());
     }
 
     public void add(Book book) {
-	LineItem item = null;
-	for (LineItem i : items) {
-	    if (i.getBook().equals(book)) {
-		item = i;
-		break;
-	    }
-	}
+	LineItem item = itemsMap.get(book.getIsbn());
 	if (item != null) {
 	    item.add();
 	} else {
-	    items.add(new LineItem(book));
+	    itemsMap.put(book.getIsbn(), new LineItem(book));
 	}
     }
 
     public void remove(LineItem item) {
-	if (items.contains(item)) {
-	    items.remove(item);
+	if(itemsMap.containsKey(item.getBook().getIsbn())){
+	    itemsMap.remove(item.getBook().getIsbn());
 	}
     }
-
 }
