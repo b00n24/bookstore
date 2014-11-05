@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition template="template.xhtml" 
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:define name="header">
+        <ui:include src="header.xhtml">
+            <ui:param name="pageTitle" value="#{texts.detailPageTitle}" />
+        </ui:include>
+    </ui:define>
+
+    <ui:define name="content">
+        <h:form id="bookDetailsForm" rendered="#{not empty catalogBean.selectedBook}">
+            <h:panelGrid columns="2">
+                <h:outputText value="#{texts.isbn}" />
+                <h:outputText value="#{catalogBean.selectedBook.isbn}" />
+                <h:outputText value="#{texts.title}" />
+                <h:outputText value="#{catalogBean.selectedBook.title}" />
+                <h:outputText value="#{texts.detailAuthors}" />
+                <h:outputText value="#{catalogBean.selectedBook.authors}" />
+                <h:outputText value="#{texts.detailPublisher}" />
+                <h:outputText value="#{catalogBean.selectedBook.publisher}" />
+                <h:outputText value="#{texts.detailPublicationYear}" />
+                <h:outputText value="#{catalogBean.selectedBook.publicationYear}" />
+                <h:outputText value="#{texts.detailBinding}" />
+                <h:outputText value="#{catalogBean.selectedBook.binding}" />
+                <h:outputText value="#{texts.detailNumberOfPages}" />
+                <h:outputText value="#{catalogBean.selectedBook.numberOfPages}" />
+                <h:outputText value="#{texts.price}" />
+                <h:outputText value="#{catalogBean.selectedBook.price}" />
+            </h:panelGrid>
+	    <p/>
+            <h:commandLink value="#{texts.back}" action="#{navigationBean.goBack()}" />
+        </h:form>
+    </ui:define>
+</ui:composition>

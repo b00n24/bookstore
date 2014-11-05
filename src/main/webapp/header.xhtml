@@ -17,7 +17,15 @@
 	    <p/>
 	    <h:commandLink action="#{navigationBean.goToCatalogSearch()}" value="#{texts.catalogPageTitle}"/>
 	    |
-	    <h:commandLink action="#{navigationBean.goToShoppingCart()}" value="#{texts.cartPageTitle}" disabled="#{shoppingCartBean.cartEmpty}"/>
+	    <h:commandLink action="#{navigationBean.goToShoppingCart()}" value="#{texts.cartPageTitle}" disabled="#{shoppingCartBean.cartEmpty}" />
+	    |
+	    <h:commandLink action="#{navigationBean.goToOrderSummary()}" value="#{texts.checkoutPageTitle}" disabled="#{shoppingCartBean.cartEmpty}" />
+	    |
+	    <h:commandLink action="#{navigationBean.goToAccount()}" value="#{texts.accountPageTitle}" />
+	    <h:panelGroup rendered="#{loginBean.isLoggedIn()}">
+		|
+		<h:commandLink action="#{loginBean.logout()}" value="#{texts.logout}" />
+	    </h:panelGroup>
 	    <h:panelGroup rendered="#{loginBean.isLoggedIn()}">
 		|
 		<h:commandLink action="#{loginBean.logout()}" value="#{texts.logout}" />

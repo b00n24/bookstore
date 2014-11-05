@@ -42,6 +42,7 @@ public class CustomerBean implements Serializable {
 	try {
 	    customerService.register(customer);
 	} catch (EmailAlreadyUsedException ex) {
+	    //klappt noch nicht
 	    MessageFactory.error(WARNING_USER_EXISTS, customer.getEmail());
 	    return null;
 	}
