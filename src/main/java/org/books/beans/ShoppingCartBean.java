@@ -55,4 +55,8 @@ public class ShoppingCartBean implements Serializable {
 	}
 	return total;
     }
+    
+    public boolean isCartEmpty() {
+	return itemsMap.isEmpty();
+    }
 }
