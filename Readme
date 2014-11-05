@@ -4,4 +4,4 @@ Special-Features:
 - TODO: Das aktive Menuitem wird visuell hervorgehoben.
 - Der User kann die Sprache des Bookstores selbst auswählen. Default-mässig wird das Locale des User-Agents benutzt. Der User kann aber die Sprache selbst wechseln, indem er auf das Sprachen-Flag klickt. Man sollte dies bei einem richtigen Bookstore auch im Profil hinterlegen.
 - Im Warenkorb kann man erneut auf die Details eines Buches gelangen. Der 'Zurück' Link geht anschliessend auf die korrekte Seite. Dies ist mit einem 'NavigationBean', welcher eine History der besuchten Seiten führt.
- 
+- Preise rechtsbündig

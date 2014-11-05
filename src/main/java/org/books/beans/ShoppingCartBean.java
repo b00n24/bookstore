@@ -6,6 +6,8 @@
 package org.books.beans;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -43,5 +45,14 @@ public class ShoppingCartBean implements Serializable {
         if (itemsMap.containsKey(item.getBook().getIsbn())) {
             itemsMap.remove(item.getBook().getIsbn());
         }
+    }
+    
+    public BigDecimal getTotal() {
+	BigDecimal total = new BigDecimal(BigInteger.ZERO);
+	for (LineItem lineItem : itemsMap.values()) {
+	    BigDecimal itemPrice = lineItem.getBook().getPrice().multiply(new BigDecimal(lineItem.getQuantity()));
+	    total = total.add(itemPrice);
+	}
+	return total;
     }
 }
