@@ -14,8 +14,8 @@
 
         <h:form id="searchByTextForm">
             <h:messages showSummary="true" showDetail="false" errorClass="error" infoClass="info" layout="table" />
-            <h:outputText value="#{texts.catalogSearchBook}" styleClass="heading"/>
-            <h:panelGrid columns="3">
+            <h:outputText value="#{texts.loginPageTitle}" styleClass="heading"/>
+            <h:panelGrid columns="2">
                 <h:outputLabel value="#{texts.loginEmail}"/>
                 <h:inputText id="email" value="#{loginBean.email}" required="true"/>
                 <h:outputLabel value="#{texts.loginPassword}"/>
@@ -23,7 +23,8 @@
             </h:panelGrid>
             <p/>
             <h:commandButton value="#{texts.btnLogin}" action="#{loginBean.login()}"/>
-            <h:commandLink value="#{texts.registration}" action="#{navigationBean.goToBookDetails()}" />
+	    <p/>
+            <h:commandLink value="#{texts.registration}" action="#{navigationBean.goToRegistration()}" />
         </h:form>
     </ui:define>
 </ui:composition>

@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 
 /**
  *
@@ -14,52 +15,90 @@ import javax.faces.context.FacesContext;
 @SessionScoped
 public class NavigationBean implements Serializable {
 
-    private final LinkedList history = new LinkedList();
-    private static final String PAGE_CATALOG_SEARCH = "catalogSearch";
-    private static final String PAGE_BOOK_DETAILS = "bookDetails";
-    private static final String PAGE_SHOPPING_CART = "shoppingCart";
-    private static final String PAGE_LOGIN = "login";
-    private static final String PAGE_REGISTRATION = "registration";
-    private String currentView;
+    @Inject
+    LoginBean login;
+    
+    private final LinkedList<Pages> history = new LinkedList();
+    private Pages nextView;
 
     public String goToCatalogSearch() {
-        saveCurrentPage();
-        return PAGE_CATALOG_SEARCH;
+	saveCurrentPage();
+	return goToPage(Pages.PAGE_CATALOG_SEARCH);
     }
 
     public String goToBookDetails() {
-        saveCurrentPage();
-        return PAGE_BOOK_DETAILS;
+	saveCurrentPage();
+	return goToPage(Pages.PAGE_BOOK_DETAILS);
     }
 
     public String goToShoppingCart() {
-        saveCurrentPage();
-        return PAGE_SHOPPING_CART;
-    }
-
-    public String goToLogin() {
-        return PAGE_LOGIN;
+	saveCurrentPage();
+	return goToPage(Pages.PAGE_SHOPPING_CART);
     }
 
     public String goToRegistration() {
-        saveCurrentPage();
-        return PAGE_REGISTRATION;
+	saveCurrentPage();
+	return goToPage(Pages.PAGE_REGISTRATION);
+    }
+
+    private String goToLogin() {
+	return Pages.PAGE_LOGIN.getPageName();
     }
 
     String goToNextPage() {
-        return currentView == null ? PAGE_CATALOG_SEARCH : currentView;
+	return nextView == null ? Pages.PAGE_CATALOG_SEARCH.getPageName() : nextView.getPageName();
+    }
+
+    public String goBack() {
+	return history.isEmpty() ? Pages.PAGE_CATALOG_SEARCH.getPageName() : history.pop().getPageName();
+    }
+
+    private String goToPage(Pages page){
+	if(page.isLoginNeeded() && !login.isLoggedIn()){
+	    this.nextView = page;
+	    return goToLogin();
+    	}
+	return page.getPageName();
+    }
+    private void saveCurrentPage() {
+	Pages currentView = Pages.getPage(FacesContext.getCurrentInstance().getViewRoot().getViewId());
+	Pages previousView = history.isEmpty() ? null : history.peek();
+	if (previousView == null || !previousView.equals(currentView)) {
+	    history.push(currentView);
+	}
     }
     
-    public String goBack() {
-        return history.isEmpty() ? PAGE_CATALOG_SEARCH : (String) history.pop();
-    }
+    private enum Pages {
 
-    private void saveCurrentPage() {
-        currentView = FacesContext.getCurrentInstance().getViewRoot().getViewId();
-        String previousView = history.isEmpty() ? null : (String) history.peek();
-        if (previousView == null || !previousView.equals(currentView)) {
-            history.push(currentView);
-        }
-    }
+	PAGE_CATALOG_SEARCH("/catalogSearch.xhtml", false),
+	PAGE_BOOK_DETAILS("/bookDetails.xhtml", true), 
+	PAGE_SHOPPING_CART("/shoppingCart.xhtml", false), 
+	PAGE_LOGIN("/login.xhtml", false), 
+	PAGE_REGISTRATION("/registration.xhtml", false);
+	
+	private final String pageName;
+	private final boolean loginNeeded;
 
+	private Pages(String pageName, boolean loginNeeded) {
+	    this.pageName = pageName;
+	    this.loginNeeded = loginNeeded;
+	}
+	
+	public static Pages getPage(String pageName){
+	    for(Pages page : Pages.values()){
+		if(page.getPageName().equals(pageName)){
+		    return page;
+		}
+	    }
+	    throw new IllegalArgumentException("PageName unknown: " + pageName);
+	}
+	
+	public String getPageName() {
+	    return pageName;
+	}
+
+	public boolean isLoginNeeded() {
+	    return loginNeeded;
+	}
+    }    
 }
