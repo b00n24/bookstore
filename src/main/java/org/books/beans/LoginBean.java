@@ -6,13 +6,12 @@
 package org.books.beans;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import org.books.application.Bookstore;
-import org.books.persistence.Book;
+import org.books.application.exception.InvalidCredentialsException;
+import org.books.persistence.Customer;
+import org.books.services.CustomerService;
 import org.books.util.MessageFactory;
 
 /**
@@ -22,17 +21,22 @@ import org.books.util.MessageFactory;
 @Named("loginBean")
 @SessionScoped
 public class LoginBean implements Serializable {
+    
+    private static final String ERROR_INVALID_CREDENTIALS = "org.books.errorInvalidCredentials";
 
     @Inject
     private NavigationBean navigation;
     
+    @Inject
+    private CustomerService customerService;
+    
     private String email;
     private String password;
     
-    private boolean loggedIn;
+    private Customer customer;
 
     public boolean isLoggedIn() {
-        return loggedIn;
+        return customer != null;
     }
 
     public String getEmail() {
@@ -52,13 +56,12 @@ public class LoginBean implements Serializable {
     }
 
     public String login() {
-        // TODO do implement
-        boolean checkOk = true;
-        if(checkOk){
-            loggedIn = true;
-        }else{
-            loggedIn = false;
-        }
+	try {
+	    customer = customerService.authenticate(email, password);
+	} catch (InvalidCredentialsException ex) {
+	    MessageFactory.error(ERROR_INVALID_CREDENTIALS);
+	    return null;
+	}
         return navigation.goToNextPage();
     }
 }
