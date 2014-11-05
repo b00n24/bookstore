@@ -18,6 +18,9 @@
                         <h:outputText value="#{texts.title}" />
                     </f:facet>
                     <h:commandLink action="#{catalogBean.selectBook(item.book)}" value="#{item.book.title}"/>
+		    <f:facet name="footer">
+                        <h:outputText value="#{texts.cartTotalPrice}" styleClass="important" />
+                    </f:facet>
                 </h:column>
                 <h:column>
                     <f:facet name="header">
@@ -29,7 +32,14 @@
                     <f:facet name="header">
                         <h:outputText value="#{texts.price}" />
                     </f:facet>
-                    <h:outputText value="#{item.book.price}"/>
+                    <div class="price">
+			<h:outputText value="#{item.book.price}" />
+		    </div>
+		    <f:facet name="footer">
+                        <div class="price">
+			    <h:outputText value="#{shoppingCartBean.total}" styleClass="important" />
+			</div>
+                    </f:facet>
                 </h:column>
                 <h:column>
                     <f:facet name="header">
