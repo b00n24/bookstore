@@ -26,10 +26,6 @@
 		|
 		<h:commandLink action="#{loginBean.logout()}" value="#{texts.logout}" />
 	    </h:panelGroup>
-	    <h:panelGroup rendered="#{loginBean.isLoggedIn()}">
-		|
-		<h:commandLink action="#{loginBean.logout()}" value="#{texts.logout}" />
-	    </h:panelGroup>
 	    <p/>
 	</h:form>
     </ui:composition>
