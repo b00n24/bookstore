@@ -23,7 +23,9 @@
             </h:panelGrid>
             <p/>
             <h:commandButton value="#{texts.btnLogin}" action="#{loginBean.login()}"/>
-	    <p/>
+        </h:form>
+	<p/>
+	<h:form id="registerForm">
             <h:commandLink value="#{texts.registration}" action="#{navigationBean.goToRegistration()}" />
         </h:form>
     </ui:define>

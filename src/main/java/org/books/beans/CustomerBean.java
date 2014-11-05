@@ -39,16 +39,12 @@ public class CustomerBean implements Serializable {
     }
 
     public String register() {
-	Customer customer = null;
 	try {
-	    customer = customerService.register(customer);
+	    customerService.register(customer);
 	} catch (EmailAlreadyUsedException ex) {
 	    MessageFactory.error(WARNING_USER_EXISTS);
+	    return null;
 	}
-	if (customer != null) {
-	    return navigationBean.goToNextPage();
-	}
-	
-	return null;
+	return navigationBean.goToNextPage();
     }
 }
