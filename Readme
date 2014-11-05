@@ -1,0 +1,1 @@
+- Währung fehlt beim Book-Objekt. Daher zeigen wir keine Währung an. Man müsste diese mitschicken und dann je nach Locale z.B. mit einem Konverter-Webservice umwandeln.
