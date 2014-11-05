@@ -23,24 +23,25 @@ import org.books.persistence.LineItem;
 @SessionScoped
 public class ShoppingCartBean implements Serializable {
 
-    private Map<String, LineItem> itemsMap = new HashMap();
+    private final Map<String, LineItem> itemsMap = new HashMap();
 
     public List<LineItem> getItems() {
-	return new ArrayList<>(itemsMap.values());
+        return new ArrayList<>(itemsMap.values());
     }
 
     public void add(Book book) {
-	LineItem item = itemsMap.get(book.getIsbn());
-	if (item != null) {
-	    item.add();
-	} else {
-	    itemsMap.put(book.getIsbn(), new LineItem(book));
-	}
+        LineItem item = itemsMap.get(book.getIsbn());
+        if (item != null) {
+            Integer newQuantity = item.getQuantity() == null ? 1 : item.getQuantity() + 1;
+            item.setQuantity(newQuantity);
+        } else {
+            itemsMap.put(book.getIsbn(), new LineItem(book, 1));
+        }
     }
 
     public void remove(LineItem item) {
-	if(itemsMap.containsKey(item.getBook().getIsbn())){
-	    itemsMap.remove(item.getBook().getIsbn());
-	}
+        if (itemsMap.containsKey(item.getBook().getIsbn())) {
+            itemsMap.remove(item.getBook().getIsbn());
+        }
     }
 }

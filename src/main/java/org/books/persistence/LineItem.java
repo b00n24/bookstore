@@ -1,43 +1,38 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.books.persistence;
 
-import java.util.Objects;
+import java.io.Serializable;
 
-/**
- *
- * @author AWy
- */
-public class LineItem {
+public class LineItem implements Serializable {
 
-    private int quantity;
-    private Book book;
+	private Book book;
+	private Integer quantity;
 
-    public LineItem(Book book) {
-	this.book = book;
-	this.quantity = 1;
-    }
+	public LineItem() {
+	}
 
-    public int getQuantity() {
-	return quantity;
-    }
+	public LineItem(Book book, Integer quantity) {
+		this.book = book;
+		this.quantity = quantity;
+	}
 
-    public void setQuantity(int quantity) {
-	this.quantity = quantity;
-    }
+	public Book getBook() {
+		return book;
+	}
 
-    public Book getBook() {
-	return book;
-    }
+	public void setBook(Book book) {
+		this.book = book;
+	}
 
-    public void setBook(Book book) {
-	this.book = book;
-    }
+	public Integer getQuantity() {
+		return quantity;
+	}
 
-    public void add() {
-	this.quantity++;
-    }
+	public void setQuantity(Integer quantity) {
+		this.quantity = quantity;
+	}
+
+	@Override
+	public String toString() {
+		return "LineItem{" + "book=" + book + ", quantity=" + quantity + '}';
+	}
 }
