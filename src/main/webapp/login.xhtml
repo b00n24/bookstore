@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition template="template.xhtml" 
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:define name="header">
+        <ui:include src="header.xhtml">
+            <ui:param name="pageTitle" value="#{texts.loginPageTitle}" />
+        </ui:include>
+    </ui:define>
+
+    <ui:define name="content">
+
+        <h:form id="searchByTextForm">
+            <h:messages showSummary="true" showDetail="false" errorClass="error" infoClass="info" layout="table" />
+            <h:outputText value="#{texts.catalogSearchBook}" styleClass="heading"/>
+            <h:panelGrid columns="3">
+                <h:outputLabel value="#{texts.loginEmail}"/>
+                <h:inputText id="email" value="#{loginBean.email}" required="true"/>
+                <h:outputLabel value="#{texts.loginPassword}"/>
+                <h:inputSecret id="password" value="#{loginBean.password}" required="true"/>
+            </h:panelGrid>
+            <p/>
+            <h:commandButton value="#{texts.btnLogin}" action="#{loginBean.login()}"/>
+            <h:commandLink value="#{texts.registration}" action="#{navigationBean.goToBookDetails()}" />
+        </h:form>
+    </ui:define>
+</ui:composition>
