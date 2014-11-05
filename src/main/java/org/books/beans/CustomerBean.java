@@ -16,16 +16,16 @@ import org.books.util.MessageFactory;
 @Named("customerBean")
 @SessionScoped
 public class CustomerBean implements Serializable {
-    
+
     private static final String WARNING_USER_EXISTS = "org.books.userExistsAlready";
-    
+
     @Inject
     private CustomerService customerService;
     @Inject
-    private NavigationBean navigationBean;
-    
+    private LoginBean loginBean;
+
     private Customer customer;
-    
+
     public CustomerBean() {
 	customer = new Customer();
     }
@@ -33,7 +33,7 @@ public class CustomerBean implements Serializable {
     public Customer getCustomer() {
 	return customer;
     }
-    
+
     public void setCustomer(Customer customer) {
 	this.customer = customer;
     }
@@ -42,9 +42,20 @@ public class CustomerBean implements Serializable {
 	try {
 	    customerService.register(customer);
 	} catch (EmailAlreadyUsedException ex) {
-	    MessageFactory.error(WARNING_USER_EXISTS);
+	    MessageFactory.error(WARNING_USER_EXISTS, customer.getEmail());
 	    return null;
 	}
-	return navigationBean.goToNextPage();
+	return login();
+    }
+
+    /**
+     * Login and redirect to next page
+     *
+     * @return
+     */
+    private String login() {
+	loginBean.setEmail(customer.getEmail());
+	loginBean.setPassword(customer.getPassword());
+	return loginBean.login();
     }
 }
