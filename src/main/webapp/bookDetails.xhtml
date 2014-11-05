@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" 
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <h:head>
-        <title>Detail</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <h:outputStylesheet name="styles.css"/>
-    </h:head>
-    <h:body>
-        <h:outputText value="#{texts.detailPageTitle}" styleClass="heading"/>
-	<p/>
+<ui:composition template="template.xhtml" 
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:define name="header">
+        <ui:include src="header.xhtml">
+            <ui:param name="pageTitle" value="#{texts.detailPageTitle}" />
+        </ui:include>
+    </ui:define>
 
+    <ui:define name="content">
         <h:form id="bookDetailsForm" rendered="#{not empty catalogBean.selectedBook}">
             <h:panelGrid columns="2">
                 <h:outputText value="#{texts.isbn}" />
@@ -29,10 +28,10 @@
                 <h:outputText value="#{texts.detailNumberOfPages}" />
                 <h:outputText value="#{catalogBean.selectedBook.numberOfPages}" />
                 <h:outputText value="#{texts.price}" />
-                <h:outputText value="#{catalogBean.selectedBook.price}" />                
+                <h:outputText value="#{catalogBean.selectedBook.price}" />
             </h:panelGrid>
 	    <p/>
             <h:commandLink value="#{texts.back}" action="#{navigationBean.goBack()}" />
         </h:form>
-    </h:body>
-</html>
+    </ui:define>
+</ui:composition>

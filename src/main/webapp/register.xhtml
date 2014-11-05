@@ -1,38 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" 
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <h:head>
-        <title>Detail</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <h:outputStylesheet name="styles.css"/>
-    </h:head>
-    <h:body>
-        <h:outputText value="#{texts.detailPageTitle}" styleClass="heading"/>
-	<p/>
-
-        <h:form id="bookDetailsForm" rendered="#{not empty catalogBean.selectedBook}">
+<ui:composition template="template.xhtml" 
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:define name="header">
+        <ui:include src="header.xhtml">
+            <ui:param name="pageTitle" value="#{texts.registerPageTitle}" />
+        </ui:include>
+    </ui:define>
+    <ui:define name="content">
+        <h:form id="registerForm">
             <h:panelGrid columns="2">
-                <h:outputText value="#{texts.isbn}" />
-                <h:outputText value="#{catalogBean.selectedBook.isbn}" />
-                <h:outputText value="#{texts.title}" />
-                <h:outputText value="#{catalogBean.selectedBook.title}" />
-                <h:outputText value="#{texts.detailAuthors}" />
-                <h:outputText value="#{catalogBean.selectedBook.authors}" />
-                <h:outputText value="#{texts.detailPublisher}" />
-                <h:outputText value="#{catalogBean.selectedBook.publisher}" />
-                <h:outputText value="#{texts.detailPublicationYear}" />
-                <h:outputText value="#{catalogBean.selectedBook.publicationYear}" />
-                <h:outputText value="#{texts.detailBinding}" />
-                <h:outputText value="#{catalogBean.selectedBook.binding}" />
-                <h:outputText value="#{texts.detailNumberOfPages}" />
-                <h:outputText value="#{catalogBean.selectedBook.numberOfPages}" />
-                <h:outputText value="#{texts.price}" />
-                <h:outputText value="#{catalogBean.selectedBook.price}" />                
+                <h:outputText value="#{texts.firstname}" />
+                <h:inputText value="#{customerBean.customer.firstName}" />
+                <h:outputText value="#{texts.lastname}" />
+                <h:inputText value="#{customerBean.customer.lastName}" />
+                <h:outputText value="#{texts.email}" />
+                <h:inputText value="#{customerBean.customer.email}" />
+                <h:outputText value="#{texts.password}" />
+		<h:inputText value="#{customerBean.customer.password}" />
             </h:panelGrid>
+	    
+	    <p/>
+	    <h:outputText value="#{texts.address}" styleClass="subheading"/>
+	    <h:panelGrid columns="2">
+                <h:outputText value="#{texts.street}" />
+                <h:inputText value="#{customerBean.customer.address.street}" />
+                <h:outputText value="#{texts.city}" />
+                <h:inputText value="#{customerBean.customer.address.city}" />
+                <h:outputText value="#{texts.postalCode}" />
+                <h:inputText value="#{customerBean.customer.address.postalCode}" />
+                <h:outputText value="#{texts.country}" />
+                <h:inputText value="#{customerBean.customer.address.country}" />
+            </h:panelGrid>
+	    
+	    <p/>
+	    <h:outputText value="#{texts.creditCard}" styleClass="subheading"/>
+	    <h:panelGrid columns="2">
+                <h:outputText value="#{texts.cardType}" />
+                <h:inputText value="#{customerBean.customer.address.street}" />
+                <h:outputText value="#{texts.cardNumber}" />
+                <h:inputText value="#{customerBean.customer.address.city}" />
+                <h:outputText value="#{texts.cardValidTo}" />
+		<h:panelGroup>
+		    <h:inputText value="#{customerBean.customer.creditCard.expirationMonth}" />
+		    /
+		    <h:inputText value="#{customerBean.customer.creditCard.expirationYear}" />
+		</h:panelGroup>
+            </h:panelGrid>
+	    <p/>
+	    <h:commandButton value="#{texts.register}" action="#{customerBean.register()}" />
+	    <h:commandButton value="#{texts.cancle}" action="#{navigationBean.goToCatalogSearch()}" />
 	    <p/>
             <h:commandLink value="#{texts.back}" action="#{navigationBean.goBack()}" />
         </h:form>
-    </h:body>
-</html>
+    </ui:define>
+</ui:composition>

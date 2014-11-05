@@ -46,7 +46,7 @@ public class ShoppingCartBean implements Serializable {
             itemsMap.remove(item.getBook().getIsbn());
         }
     }
-    
+
     public BigDecimal getTotal() {
 	BigDecimal total = new BigDecimal(BigInteger.ZERO);
 	for (LineItem lineItem : itemsMap.values()) {
@@ -55,7 +55,7 @@ public class ShoppingCartBean implements Serializable {
 	}
 	return total;
     }
-    
+
     public boolean isCartEmpty() {
 	return itemsMap.isEmpty();
     }
