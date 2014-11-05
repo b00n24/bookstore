@@ -18,6 +18,10 @@
 	    <h:commandLink action="#{navigationBean.goToCatalogSearch()}" value="#{texts.catalogPageTitle}"/>
 	    |
 	    <h:commandLink action="#{navigationBean.goToShoppingCart()}" value="#{texts.cartPageTitle}" disabled="#{shoppingCartBean.cartEmpty}"/>
+	    <h:panelGroup rendered="#{loginBean.isLoggedIn()}">
+		|
+		<h:commandLink action="#{loginBean.logout()}" value="#{texts.logout}" />
+	    </h:panelGroup>
 	    <p/>
 	</h:form>
     </ui:composition>

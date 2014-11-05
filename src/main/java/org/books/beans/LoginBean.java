@@ -54,6 +54,11 @@ public class LoginBean implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
+    
+    public String logout(){
+	this.customer = null;
+	return navigation.goToCatalogSearch();
+    }
 
     public String login() {
 	try {

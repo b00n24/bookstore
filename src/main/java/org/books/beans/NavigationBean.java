@@ -40,7 +40,7 @@ public class NavigationBean implements Serializable {
 	saveCurrentPage();
 	return goToPage(Pages.PAGE_REGISTRATION);
     }
-
+    
     private String goToLogin() {
 	return Pages.PAGE_LOGIN.getPageName();
     }
