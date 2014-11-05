@@ -1,16 +1,13 @@
 package org.books.beans;
 
 import java.io.Serializable;
-import java.util.Locale;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import org.books.application.exception.EmailAlreadyUsedException;
 import org.books.persistence.Customer;
 import org.books.services.CustomerService;
+import org.books.util.MessageFactory;
 
 /**
  *
@@ -20,8 +17,12 @@ import org.books.services.CustomerService;
 @SessionScoped
 public class CustomerBean implements Serializable {
     
+    private static final String WARNING_USER_EXISTS = "org.books.userExistsAlready";
+    
     @Inject
     private CustomerService customerService;
+    @Inject
+    private NavigationBean navigationBean;
     
     private Customer customer;
     
@@ -37,11 +38,17 @@ public class CustomerBean implements Serializable {
 	this.customer = customer;
     }
 
-    public void register() {
+    public String register() {
+	Customer customer = null;
 	try {
-	    customerService.register(customer);
+	    customer = customerService.register(customer);
 	} catch (EmailAlreadyUsedException ex) {
-	    Logger.getLogger(CustomerBean.class.getName()).log(Level.SEVERE, "User exists already.", ex);
+	    MessageFactory.error(WARNING_USER_EXISTS);
 	}
+	if (customer != null) {
+	    return navigationBean.goToNextPage();
+	}
+	
+	return null;
     }
 }

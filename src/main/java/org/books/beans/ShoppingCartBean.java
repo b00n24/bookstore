@@ -50,8 +50,10 @@ public class ShoppingCartBean implements Serializable {
     public BigDecimal getTotal() {
 	BigDecimal total = new BigDecimal(BigInteger.ZERO);
 	for (LineItem lineItem : itemsMap.values()) {
-	    BigDecimal itemPrice = lineItem.getBook().getPrice().multiply(new BigDecimal(lineItem.getQuantity()));
-	    total = total.add(itemPrice);
+	    if (lineItem.getQuantity() != null) {
+		BigDecimal itemPrice = lineItem.getBook().getPrice().multiply(new BigDecimal(lineItem.getQuantity()));
+		total = total.add(itemPrice);
+	    }
 	}
 	return total;
     }

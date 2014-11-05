@@ -50,6 +50,8 @@
 		</h:panelGroup>
             </h:panelGrid>
 	    <p/>
+	    <h:messages showSummary="true" showDetail="false" errorClass="error" infoClass="info" layout="table" />
+	    <p/>
 	    <h:commandButton value="#{texts.register}" action="#{customerBean.register()}" />
 	    <h:commandButton value="#{texts.cancle}" action="#{navigationBean.goToCatalogSearch()}" />
 	    <p/>

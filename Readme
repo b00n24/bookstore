@@ -6,3 +6,4 @@ Special-Features:
 - Im Warenkorb kann man erneut auf die Details eines Buches gelangen. Der 'Zurück' Link geht anschliessend auf die korrekte Seite. Dies ist mit einem 'NavigationBean', welcher eine History der besuchten Seiten führt.
 - Preise rechtsbündig
 - Einkaufswagen nur klickbar, wenn etwas im Einkaufswagen ist.
+- Logout
