@@ -11,21 +11,20 @@
     </ui:define>
 
     <ui:define name="content">
-	<h:outputText value="#{texts.checkoutPageTitle}" styleClass="heading"/>	    
         <h:form id="orderSummaryUserForm">
             <h:panelGrid columns="2">
-                <h:outputText value="#{texts.checkoutName}" />
+                <h:outputLabel value="#{texts.checkoutName}" />
                 <h:outputText value="#{orderBean.customer.firstName} #{orderBean.customer.lastName}" />
-                <h:outputText value="#{texts.email}" />
+                <h:outputLabel value="#{texts.email}" />
                 <h:outputText value="#{orderBean.email}" />
-                <h:outputText value="#{texts.address}" />
+                <h:outputLabel value="#{texts.address}" />
 		<h:panelGrid columns="1">
 		    <h:outputText value="#{orderBean.address.street}" />
 		    <h:outputText value="#{orderBean.address.city}" />
 		    <h:outputText value="#{orderBean.address.postalCode}" />
 		    <h:outputText value="#{orderBean.address.country}" />
 		</h:panelGrid>
-		<h:outputText value="#{texts.creditCard}" />
+		<h:outputLabel value="#{texts.creditCard}" />
 		<h:panelGrid columns="1">
 		    <h:outputText value="#{orderBean.creditCard.type}" />
 		    <h:outputText value="#{orderBean.creditCard.number}" />

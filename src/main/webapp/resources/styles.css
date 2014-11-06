@@ -16,10 +16,15 @@ th {
 	text-align: left;
 	padding: 2pt 10pt 2pt 0pt;
 	color: #697d91;
+	background-color: #dcdcdc;
 }
 td {
 	vertical-align: top;
 	padding: 2pt 10pt 2pt 0pt;
+}
+
+td>label{
+    font-weight: bold;
 }
 p {
 	margin-top: 20pt;

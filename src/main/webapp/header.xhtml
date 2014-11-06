@@ -13,8 +13,7 @@
 		    <h:graphicImage name="flag_en.png" alt="English" />
 		</h:commandLink>
 	    </h:panelGroup>
-	    <h:outputLabel value="#{pageTitle}" styleClass="heading" />
-	    <p/>
+	    <h:outputLabel value="#{texts.htmlTitle}" styleClass="title" />
 	    <h:commandLink action="#{navigationBean.goToCatalogSearch()}" value="#{texts.catalogPageTitle}"/>
 	    |
 	    <h:commandLink action="#{navigationBean.goToShoppingCart()}" value="#{texts.cartPageTitle}" disabled="#{shoppingCartBean.cartEmpty}" />
@@ -27,6 +26,7 @@
 		<h:commandLink action="#{loginBean.logout()}" value="#{texts.logout}" />
 	    </h:panelGroup>
 	    <p/>
+	    <h:outputLabel value="#{pageTitle}" styleClass="heading" />
 	</h:form>
     </ui:composition>
 </html>
