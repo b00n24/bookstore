@@ -6,32 +6,67 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
     <ui:define name="header">
         <ui:include src="header.xhtml">
-            <ui:param name="pageTitle" value="#{texts.detailPageTitle}" />
+            <ui:param name="pageTitle" value="#{texts.checkoutPageTitle}" />
         </ui:include>
     </ui:define>
 
     <ui:define name="content">
-        <h:form id="bookDetailsForm" rendered="#{not empty catalogBean.selectedBook}">
+	<h:outputText value="#{texts.checkoutPageTitle}" styleClass="heading"/>	    
+        <h:form id="orderSummaryUserForm">
             <h:panelGrid columns="2">
-                <h:outputText value="#{texts.isbn}" />
-                <h:outputText value="#{catalogBean.selectedBook.isbn}" />
-                <h:outputText value="#{texts.title}" />
-                <h:outputText value="#{catalogBean.selectedBook.title}" />
-                <h:outputText value="#{texts.detailAuthors}" />
-                <h:outputText value="#{catalogBean.selectedBook.authors}" />
-                <h:outputText value="#{texts.detailPublisher}" />
-                <h:outputText value="#{catalogBean.selectedBook.publisher}" />
-                <h:outputText value="#{texts.detailPublicationYear}" />
-                <h:outputText value="#{catalogBean.selectedBook.publicationYear}" />
-                <h:outputText value="#{texts.detailBinding}" />
-                <h:outputText value="#{catalogBean.selectedBook.binding}" />
-                <h:outputText value="#{texts.detailNumberOfPages}" />
-                <h:outputText value="#{catalogBean.selectedBook.numberOfPages}" />
-                <h:outputText value="#{texts.price}" />
-                <h:outputText value="#{catalogBean.selectedBook.price}" />
+                <h:outputText value="#{texts.checkoutName}" />
+                <h:outputText value="#{orderBean.customer.firstName} #{orderBean.customer.lastName}" />
+                <h:outputText value="#{texts.email}" />
+                <h:outputText value="#{orderBean.email}" />
+                <h:outputText value="#{texts.address}" />
+		<h:panelGrid columns="1">
+		    <h:outputText value="#{orderBean.address.street}" />
+		    <h:outputText value="#{orderBean.address.city}" />
+		    <h:outputText value="#{orderBean.address.postalCode}" />
+		    <h:outputText value="#{orderBean.address.country}" />
+		</h:panelGrid>
+		<h:outputText value="#{texts.creditCard}" />
+		<h:panelGrid columns="1">
+		    <h:outputText value="#{orderBean.creditCard.type}" />
+		    <h:outputText value="#{orderBean.creditCard.number}" />
+		    <h:outputText value="#{orderBean.creditCardExpireDate()}" />
+		</h:panelGrid>
             </h:panelGrid>
-	    <p/>
-            <h:commandLink value="#{texts.back}" action="#{navigationBean.goBack()}" />
-        </h:form>
+	    <h:commandButton value="#{texts.btnChange}" style="color: red" />
+	</h:form>
+	<p/>
+	<h:form id="orderSummaryBooksForm">
+	    <h:dataTable value="#{shoppingCartBean.items}" var="item" rendered="#{not empty shoppingCartBean.items}">
+		<h:column>
+		    <f:facet name="header">
+			<h:outputText value="#{texts.title}" />
+		    </f:facet>
+		    <h:commandLink action="#{catalogBean.selectBook(item.book)}" value="#{item.book.title}"/>
+		    <f:facet name="footer">
+			<h:outputText value="#{texts.cartTotalPrice}" styleClass="important" />
+		    </f:facet>
+		</h:column>
+		<h:column>
+		    <f:facet name="header">
+			<h:outputText value="#{texts.price}" />
+		    </f:facet>
+		    <div class="price">
+			<h:outputText value="#{item.book.price}" />
+		    </div>
+		    <f:facet name="footer">
+			<div class="price">
+			    <h:outputText value="#{shoppingCartBean.total}" styleClass="important" />
+			</div>
+		    </f:facet>
+		</h:column>
+		<h:column>
+		    <f:facet name="header">
+			<h:outputText value="#{texts.cartQuantity}" />
+		    </f:facet>
+		    <h:outputText value="#{item.quantity}" />
+		</h:column>
+	    </h:dataTable>
+	    <h:commandButton value="#{texts.btnSend}" style="color: red" />
+	</h:form>	    
     </ui:define>
 </ui:composition>

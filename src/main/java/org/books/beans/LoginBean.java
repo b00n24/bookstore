@@ -38,6 +38,10 @@ public class LoginBean implements Serializable {
     public boolean isLoggedIn() {
         return customer != null;
     }
+    
+    public Customer getCustomer(){
+	return customer;
+    }
 
     public String getEmail() {
         return email;
