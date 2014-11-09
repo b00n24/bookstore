@@ -1,9 +1,10 @@
-- W�hrung fehlt beim Book-Objekt. Daher zeigen wir keine W�hrung an. Man m�sste diese mitschicken und dann je nach Locale z.B. mit einem Konverter-Webservice umwandeln.
+- W�hrung fehlt beim Book-Objekt. Daher zeigen wir keine Währung an. Man m�sste diese mitschicken und dann je nach Locale z.B. mit einem Konverter-Webservice umwandeln.
 - TODO Nullpointer wenn Benutzer via URL navigiert und Funktionen aufruft, die er gar nicht dürfte... 
 Special-Features:
 - TODO: Das aktive Menuitem wird visuell hervorgehoben.
-- Der User kann die Sprache des Bookstores selbst ausw�hlen. Default-m�ssig wird das Locale des User-Agents benutzt. Der User kann aber die Sprache selbst wechseln, indem er auf das Sprachen-Flag klickt. Man sollte dies bei einem richtigen Bookstore auch im Profil hinterlegen.
-- Im Warenkorb kann man erneut auf die Details eines Buches gelangen. Der 'Zur�ck' Link geht anschliessend auf die korrekte Seite. Dies ist mit einem 'NavigationBean', welcher eine History der besuchten Seiten f�hrt.
-- Preise rechtsb�ndig
+- Der User kann die Sprache des Bookstores selbst auswählen. Default-m�ssig wird das Locale des User-Agents benutzt. Der User kann aber die Sprache selbst wechseln, indem er auf das Sprachen-Flag klickt. Man sollte dies bei einem richtigen Bookstore auch im Profil hinterlegen.
+- Im Warenkorb kann man erneut auf die Details eines Buches gelangen. Der 'Zurück' Link geht anschliessend auf die korrekte Seite. Dies ist mit einem 'NavigationBean', welcher eine History der besuchten Seiten f�hrt.
+- Preise rechtsbündig
 - Einkaufswagen nur klickbar, wenn etwas im Einkaufswagen ist.
 - Logout
+- Länderliste in 2 Sprachen und beide sortiert

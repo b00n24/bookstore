@@ -6,7 +6,7 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
     <ui:define name="header">
         <ui:include src="header.xhtml">
-            <ui:param name="pageTitle" value="#{texts.registerPageTitle}" />
+            <ui:param name="pageTitle" value="#{texts.customerDetailsPageTitle}" />
         </ui:include>
     </ui:define>
     <ui:define name="content">
@@ -14,26 +14,26 @@
         <h:form id="registerForm">
             <h:panelGrid columns="2">
                 <h:outputText value="#{texts.firstname}" />
-                <h:inputText value="#{customerBean.customer.firstName}" size="30" />
+                <h:inputText value="#{loginBean.customer.firstName}" size="30" />
                 <h:outputText value="#{texts.lastname}" />
-                <h:inputText value="#{customerBean.customer.lastName}" size="30" />
+                <h:inputText value="#{loginBean.customer.lastName}" size="30" />
                 <h:outputText value="#{texts.email}" />
-                <h:inputText value="#{customerBean.customer.email}" size="30" />
+                <h:inputText value="#{loginBean.customer.email}" size="30" />
                 <h:outputText value="#{texts.password}" />
-		<h:inputText value="#{customerBean.customer.password}" size="30" />
+		<h:inputText value="#{loginBean.customer.password}" size="30" />
             </h:panelGrid>
 
 	    <p/>
 	    <h:outputText value="#{texts.address}" styleClass="subheading"/>
 	    <h:panelGrid columns="2">
                 <h:outputText value="#{texts.street}" />
-                <h:inputText value="#{customerBean.customer.address.street}" size="30" />
+                <h:inputText value="#{loginBean.customer.address.street}" size="30" />
                 <h:outputText value="#{texts.city}" />
-                <h:inputText value="#{customerBean.customer.address.city}" size="30" />
+                <h:inputText value="#{loginBean.customer.address.city}" size="30" />
                 <h:outputText value="#{texts.postalCode}" />
-                <h:inputText value="#{customerBean.customer.address.postalCode}" size="5" />
+                <h:inputText value="#{loginBean.customer.address.postalCode}" size="5" />
                 <h:outputText value="#{texts.country}" />
-		<h:selectOneMenu value="#{customerBean.customer.address.country}">
+		<h:selectOneMenu value="#{loginBean.customer.address.country}">
 		    <f:selectItems value="#{countryBean.countries}" var="country" 
 				   itemLabel="#{country.name}" itemValue="#{country.code}" />
 		</h:selectOneMenu>
@@ -43,28 +43,26 @@
 	    <h:outputText value="#{texts.creditCard}" styleClass="subheading"/>
 	    <h:panelGrid columns="2">
                 <h:outputText value="#{texts.cardType}" />
-		<h:selectOneMenu value="#{customerBean.customer.creditCard.type}">
+		<h:selectOneMenu value="#{loginBean.customer.creditCard.type}">
 		    <f:selectItem itemLabel="" itemValue="" />
 		    <f:selectItem itemLabel="Mastercard" itemValue="MasterCard" />
 		    <f:selectItem itemLabel="Visa" itemValue="Visa" />
 		</h:selectOneMenu>
                 <h:outputText value="#{texts.cardNumber}" />
-                <h:inputText value="#{customerBean.customer.creditCard.number}" size="20" />
+                <h:inputText value="#{loginBean.customer.creditCard.number}" size="20" />
                 <h:outputText value="#{texts.cardValidTo}" />
 		<h:panelGroup>
-		    <h:inputText value="#{customerBean.customer.creditCard.expirationMonth}" size="1" maxlength="2" />
+		    <h:inputText value="#{loginBean.customer.creditCard.expirationMonth}" size="1" maxlength="2" />
 		    /
-		    <h:inputText value="#{customerBean.customer.creditCard.expirationYear}" size="1" maxlength="2" />
+		    <h:inputText value="#{loginBean.customer.creditCard.expirationYear}" size="1" maxlength="2" />
 		</h:panelGroup>
             </h:panelGrid>
 	    <p/>
 	    <h:messages showSummary="true" showDetail="false" errorClass="error" infoClass="info" layout="table" />
 	    <p/>
-	    <h:commandButton value="#{texts.register}" action="#{customerBean.register()}" />
+	    <h:commandButton value="#{texts.btnSave}" />
 	    <h:outputText value=" " />
 	    <h:commandButton value="#{texts.cancel}" action="#{navigationBean.goBack()}" immediate="true" />
-	    <p/>
-            <h:commandLink value="#{texts.back}" action="#{navigationBean.goBack()}" />
         </h:form>
     </ui:define>
 </ui:composition>

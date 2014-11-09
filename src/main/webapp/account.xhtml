@@ -6,54 +6,42 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
     <ui:define name="header">
         <ui:include src="header.xhtml">
-            <ui:param name="pageTitle" value="#{texts.registerPageTitle}" />
+            <ui:param name="pageTitle" value="#{texts.accountPageTitle}" />
         </ui:include>
     </ui:define>
     <ui:define name="content">
         <h:form id="registerForm">
             <h:panelGrid columns="2">
-                <h:outputText value="#{texts.firstname}" />
-                <h:inputText value="#{customerBean.customer.firstName}" />
-                <h:outputText value="#{texts.lastname}" />
-                <h:inputText value="#{customerBean.customer.lastName}" />
-                <h:outputText value="#{texts.email}" />
-                <h:inputText value="#{customerBean.customer.email}" />
-                <h:outputText value="#{texts.password}" />
-		<h:inputText value="#{customerBean.customer.password}" />
-            </h:panelGrid>
-	    
-	    <p/>
-	    <h:outputText value="#{texts.address}" styleClass="subheading"/>
-	    <h:panelGrid columns="2">
-                <h:outputText value="#{texts.street}" />
-                <h:inputText value="#{customerBean.customer.address.street}" />
-                <h:outputText value="#{texts.city}" />
-                <h:inputText value="#{customerBean.customer.address.city}" />
-                <h:outputText value="#{texts.postalCode}" />
-                <h:inputText value="#{customerBean.customer.address.postalCode}" />
-                <h:outputText value="#{texts.country}" />
-                <h:inputText value="#{customerBean.customer.address.country}" />
-            </h:panelGrid>
-	    
-	    <p/>
-	    <h:outputText value="#{texts.creditCard}" styleClass="subheading"/>
-	    <h:panelGrid columns="2">
-                <h:outputText value="#{texts.cardType}" />
-                <h:inputText value="#{customerBean.customer.address.street}" />
-                <h:outputText value="#{texts.cardNumber}" />
-                <h:inputText value="#{customerBean.customer.address.city}" />
-                <h:outputText value="#{texts.cardValidTo}" />
+                <h:outputLabel value="#{texts.name}" />
+                <h:outputText value="#{loginBean.customer.firstName} #{loginBean.customer.lastName}" />
+                <h:outputLabel value="#{texts.email}" />
+                <h:outputText value="#{loginBean.customer.email}" />
+		
+		<h:outputLabel value="#{texts.address}" />
+                <h:outputText value="#{loginBean.customer.address.street}" />
+		<h:outputText value="" />
+                <h:outputText value="#{loginBean.customer.address.postalCode}" />
+		<h:outputText value="" />
+                <h:outputText value="#{loginBean.customer.address.city}" />
+		<h:outputText value="" />
+                <h:outputText value="#{loginBean.customer.address.country}" />
+		
+		<h:outputText value="#{texts.creditCard}" />
+                <h:outputText value="#{loginBean.customer.creditCard.type}" />
+		<h:outputText value="" />
+                <h:outputText value="#{loginBean.customer.creditCard.number}" />
+		<h:outputText value="" />
 		<h:panelGroup>
-		    <h:inputText value="#{customerBean.customer.creditCard.expirationMonth}" />
+		    <h:outputText value="#{loginBean.customer.creditCard.expirationMonth}" />
 		    /
-		    <h:inputText value="#{customerBean.customer.creditCard.expirationYear}" />
+		    <h:outputText value="#{loginBean.customer.creditCard.expirationYear}" />
 		</h:panelGroup>
             </h:panelGrid>
+	    
 	    <p/>
 	    <h:messages showSummary="true" showDetail="false" errorClass="error" infoClass="info" layout="table" />
 	    <p/>
-	    <h:commandButton value="#{texts.register}" action="#{customerBean.register()}" />
-	    <h:commandButton value="#{texts.cancle}" action="#{navigationBean.goToCatalogSearch()}" />
+	    <h:commandButton value="#{texts.btnChange}" action="#{navigationBean.goToCustomerDetails()}" />
 	    <p/>
             <h:commandLink value="#{texts.back}" action="#{navigationBean.goBack()}" />
         </h:form>

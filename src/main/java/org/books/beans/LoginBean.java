@@ -7,6 +7,7 @@ package org.books.beans;
 
 import java.io.Serializable;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import org.books.application.exception.InvalidCredentialsException;
@@ -61,6 +62,8 @@ public class LoginBean implements Serializable {
     
     public String logout(){
 	this.customer = null;
+	FacesContext.getCurrentInstance().getExternalContext()
+	    .invalidateSession();
 	return navigation.goToCatalogSearch();
     }
 

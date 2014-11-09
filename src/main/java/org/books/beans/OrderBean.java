@@ -1,6 +1,5 @@
 package org.books.beans;
 
-import com.sun.org.apache.xml.internal.serialize.OutputFormat;
 import java.io.Serializable;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
