@@ -2,6 +2,7 @@ package org.books.beans;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -9,21 +10,23 @@ import java.util.Locale;
 import javax.enterprise.context.ApplicationScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
+import org.books.persistence.CreditCard;
+import org.books.persistence.CreditCard.Type;
 
 /**
  *
  * @author AWy
  */
-@Named("countryBean")
+@Named("applicationBean")
 @ApplicationScoped
-public class CountryBean implements Serializable {
+public class ApplicationBean implements Serializable {
 
     private final List<Country> countriesDe = new ArrayList<>();
     private final List<Country> countriesEn = new ArrayList<>();
     private final Locale localeGerman = new Locale("de");
     private final Locale localeEnglish = new Locale("en");
 
-    public CountryBean() {
+    public ApplicationBean() {
 	for (String countryCode : Locale.getISOCountries()) {
 	    Locale locale = new Locale("", countryCode);
 	    countriesDe.add(new Country(countryCode, locale.getDisplayCountry(localeGerman)));
@@ -42,6 +45,10 @@ public class CountryBean implements Serializable {
 	    return countriesDe;
 	}
 	return countriesEn;
+    }
+    
+    public List<Type> getCreditCardTypes() {
+	return Arrays.asList(CreditCard.Type.values());
     }
 
     public class Country {

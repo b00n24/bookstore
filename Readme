@@ -9,3 +9,4 @@ Special-Features:
 - Logout
 - Länderliste in 2 Sprachen und beide sortiert. Defaultmässig ist das Land des Browsers ausgewählt.
 - We don't destroy the session in order to be able to keep the language. FacesContext.getCurrentInstance().getExternalContext()
+- Taglib Version 2.1

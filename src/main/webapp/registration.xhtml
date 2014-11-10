@@ -3,7 +3,8 @@
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                xmlns:f="http://xmlns.jcp.org/jsf/core">
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+		xmlns:card="http://www.bfh.ch/bookstore/taglib">
     <ui:define name="header">
         <ui:include src="header.xhtml">
             <ui:param name="pageTitle" value="#{texts.registerPageTitle}" />
@@ -30,7 +31,7 @@
 		</h:panelGroup>
                 <h:outputText value="#{texts.password}" />
 		<h:panelGroup>
-		    <h:inputText id="password" value="#{customerBean.customer.password}" size="30" required="true" />
+		    <h:inputSecret id="password" value="#{customerBean.customer.password}" size="30" required="true" />
 		    <h:message for="password" errorClass="error" showSummary="true" showDetail="false" />
 		</h:panelGroup>
             </h:panelGrid>
@@ -56,7 +57,7 @@
                 <h:outputText value="#{texts.country}" />
 		<h:panelGroup>
 		    <h:selectOneMenu id="country" value="#{customerBean.country}" required="true">
-			<f:selectItems value="#{countryBean.countries}" var="country" 
+			<f:selectItems value="#{applicationBean.countries}" var="country" 
 				       itemLabel="#{country.name}" itemValue="#{country.code}" />
 		    </h:selectOneMenu>
 		    <h:message for="country" errorClass="error" showSummary="true" showDetail="false" />
@@ -68,17 +69,16 @@
 	    <h:panelGrid columns="2">
                 <h:outputText value="#{texts.cardType}" />
 		<h:panelGroup>
-		    <h:selectOneMenu id="type" value="#{customerBean.customer.creditCard.type}" required="true">
-			<f:selectItem itemLabel="" itemValue="" />
-			<f:selectItem itemLabel="Mastercard" itemValue="MasterCard" />
-			<f:selectItem itemLabel="Visa" itemValue="Visa" />
+		    <h:selectOneMenu id="cardType" value="#{customerBean.customer.creditCard.type}" required="true">
+			<f:selectItems value="#{applicationBean.creditCardTypes}" var="type" 
+				       itemLabel="#{type.name()}" itemValue="#{type.name()}" />
 		    </h:selectOneMenu>
-		    <h:message for="type" errorClass="error" showSummary="true" showDetail="false" />
+		    <h:message for="cardType" errorClass="error" showSummary="true" showDetail="false" />
 		</h:panelGroup>
                 <h:outputText value="#{texts.cardNumber}" />
 		<h:panelGroup>
 		    <h:inputText id="creditCardNumber" value="#{customerBean.customer.creditCard.number}" size="20">
-			<f:validator validatorId="org.books.converter.CreditCardNumberValidator" />
+			<card:validateCreditCardNumber cardTypeId="cardType" />
 			<f:converter converterId="org.books.converter.CreditCardNumberConverter" />
 		    </h:inputText>
 		    <h:message for="creditCardNumber" errorClass="error" showSummary="true" showDetail="false" />
@@ -99,7 +99,7 @@
 	    <h:outputText value=" " />
 	    <h:commandButton value="#{texts.cancel}" action="#{navigationBean.goBack()}" immediate="true" />
 	    <p/>
-            <h:commandLink value="#{texts.back}" action="#{navigationBean.goBack()}" />
+            <h:commandLink value="#{texts.back}" action="#{navigationBean.goBack()}" immediate="true" />
         </h:form>
     </ui:define>
 </ui:composition>

@@ -19,8 +19,6 @@
                 <h:inputText value="#{loginBean.customer.lastName}" size="30" />
                 <h:outputText value="#{texts.email}" />
                 <h:inputText value="#{loginBean.customer.email}" size="30" />
-                <h:outputText value="#{texts.password}" />
-		<h:inputText value="#{loginBean.customer.password}" size="30" />
             </h:panelGrid>
 
 	    <p/>
@@ -34,7 +32,7 @@
                 <h:inputText value="#{loginBean.customer.address.postalCode}" size="5" />
                 <h:outputText value="#{texts.country}" />
 		<h:selectOneMenu value="#{loginBean.customer.address.country}">
-		    <f:selectItems value="#{countryBean.countries}" var="country" 
+		    <f:selectItems value="#{applicationBean.countries}" var="country" 
 				   itemLabel="#{country.name}" itemValue="#{country.code}" />
 		</h:selectOneMenu>
             </h:panelGrid>
@@ -43,15 +41,17 @@
 	    <h:outputText value="#{texts.creditCard}" styleClass="subheading"/>
 	    <h:panelGrid columns="2">
                 <h:outputText value="#{texts.cardType}" />
-		<h:selectOneMenu value="#{loginBean.customer.creditCard.type}">
-		    <f:selectItem itemLabel="" itemValue="" />
-		    <f:selectItem itemLabel="Mastercard" itemValue="MasterCard" />
-		    <f:selectItem itemLabel="Visa" itemValue="Visa" />
-		</h:selectOneMenu>
+		<h:panelGroup>
+		    <h:selectOneMenu id="cardType" value="#{loginBean.customer.creditCard.type}" required="true">
+			<f:selectItems value="#{applicationBean.creditCardTypes}" var="type" 
+				       itemLabel="#{type.name()}" itemValue="#{type.name()}" />
+		    </h:selectOneMenu>
+		    <h:message for="cardType" errorClass="error" showSummary="true" showDetail="false" />
+		</h:panelGroup>
                 <h:outputText value="#{texts.cardNumber}" />
 		<h:panelGroup>
 		    <h:inputText id="creditCardNumber" value="#{loginBean.customer.creditCard.number}" size="20">
-			<f:validator validatorId="org.books.converter.CreditCardNumberValidator" />
+			<f:validator validatorId="org.books.validator.CreditCardNumberValidator" />
 			<f:converter converterId="org.books.converter.CreditCardNumberConverter" />
 		    </h:inputText>
 		    <h:message for="creditCardNumber" errorClass="error" showSummary="true" showDetail="false" />

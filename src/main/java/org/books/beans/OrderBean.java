@@ -19,6 +19,7 @@ public class OrderBean implements Serializable {
     @Inject
     private LoginBean loginBean;
 
+     //FIXME: Customer aus Order herausholen
     public Customer getCustomer() {
 	return loginBean.getCustomer();
     }
@@ -27,10 +28,12 @@ public class OrderBean implements Serializable {
 	return loginBean.getCustomer().getEmail();
     }
 
+    //FIXME: Adresse aus Order herausholen
     public Address getAddress() {
 	return loginBean.getCustomer().getAddress();
     }
     
+    //FIXME: CreditCard aus Order herausholen
     public CreditCard getCreditCard(){
 	return loginBean.getCustomer().getCreditCard();
     }
