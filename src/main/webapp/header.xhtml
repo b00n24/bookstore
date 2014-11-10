@@ -6,13 +6,13 @@
     <ui:composition>
 	<h:form id="navigationForm">
 	    <h:outputLabel value="#{texts.htmlTitle}" styleClass="title" />
-	    <h:commandLink action="#{navigationBean.goToCatalogSearch()}" value="#{texts.catalogPageTitle}"/>
+	    <h:commandLink action="#{navigationBean.goToCatalogSearch()}" value="#{texts.catalogPageTitle}" styleClass="#{navigationBean.getHeaderStyle('PAGE_CATALOG_SEARCH')}"/>
 	    |
-	    <h:commandLink action="#{navigationBean.goToShoppingCart()}" value="#{texts.cartPageTitle}" disabled="#{shoppingCartBean.cartEmpty}" />
+	    <h:commandLink action="#{navigationBean.goToShoppingCart()}" value="#{texts.cartPageTitle}" disabled="#{shoppingCartBean.cartEmpty}" styleClass="#{navigationBean.getHeaderStyle('PAGE_SHOPPING_CART')}" />
 	    |
-	    <h:commandLink action="#{navigationBean.goToOrderSummary()}" value="#{texts.checkoutPageTitle}" disabled="#{shoppingCartBean.cartEmpty}" />
+	    <h:commandLink action="#{navigationBean.goToOrderSummary()}" value="#{texts.checkoutPageTitle}" disabled="#{shoppingCartBean.cartEmpty}"  styleClass="#{navigationBean.getHeaderStyle('PAGE_ORDER_SUMMARY')}"/>
 	    |
-	    <h:commandLink action="#{navigationBean.goToAccount()}" value="#{texts.accountPageTitle}" />
+	    <h:commandLink action="#{navigationBean.goToAccount()}" value="#{texts.accountPageTitle}"  styleClass="#{navigationBean.getHeaderStyle('PAGE_ACCOUNT')}"/>
 	    <h:panelGroup rendered="#{loginBean.isLoggedIn()}">
 		|
 		<h:commandLink action="#{loginBean.logout()}" value="#{texts.logout}" />

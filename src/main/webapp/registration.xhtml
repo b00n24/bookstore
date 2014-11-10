@@ -57,6 +57,7 @@
                 <h:outputText value="#{texts.cardValidTo}" styleClass="addressLabelFixedWidth" />
 		<h:panelGroup>
 		    <h:inputText id="expirationMonth" value="#{customerBean.customer.creditCard.expirationMonth}" size="1" maxlength="2" required="true" >
+			<f:convertNumber pattern="00" />
 			<f:validateLongRange minimum="1" maximum="12" />
 		    </h:inputText>
 		    /

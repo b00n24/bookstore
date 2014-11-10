@@ -55,7 +55,9 @@
 		</h:panelGroup>
                 <h:outputText value="#{texts.cardValidTo}" styleClass="addressLabelFixedWidth" />
 		<h:panelGroup>
-		    <h:inputText value="#{loginBean.customer.creditCard.expirationMonth}" size="1" maxlength="2" />
+		    <h:inputText value="#{loginBean.customer.creditCard.expirationMonth}" size="1" maxlength="2">
+			<f:convertNumber pattern="00" />
+		    </h:inputText>
 		    /
 		    <h:inputText value="#{loginBean.customer.creditCard.expirationYear}" size="1" maxlength="2">
 			<f:converter converterId="org.books.converter.CreditCardYearConverter" />

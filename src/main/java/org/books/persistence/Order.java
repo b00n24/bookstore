@@ -4,13 +4,18 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import org.books.util.EnumToStringUtil;
 
 public class Order extends IdentifiableObject {
 
 	public enum Status {
 
-		accepted, processing, delivered, canceled
+		accepted, processing, delivered, canceled;
+		
+	public String asString() {
+	    return EnumToStringUtil.getText(this);
 	}
+    }
 
 	private String number;
 	private Date date;

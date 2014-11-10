@@ -12,16 +12,20 @@
 
     <ui:define name="content">
 	<h:outputText value="#{texts.orderConfirmationMsg}" />
+	<p/>
 	<h:panelGrid columns="2">
 	    <h:outputLabel value="#{texts.orderConfirmationNr}" />
 	    <h:outputText value="#{orderBean.order.number}" />
 	    <h:outputLabel value="#{texts.orderConfirmationDate}" />
-	    <h:outputText value="#{orderBean.order.date}" />
+	    <h:outputText value="#{orderBean.order.date}">
+		<f:convertDateTime timeStyle="Date" />
+	    </h:outputText>
 	    <h:outputLabel value="#{texts.orderConfirmationAmount}" />
 	    <h:outputText value="#{orderBean.order.amount}" />
 	    <h:outputLabel value="#{texts.orderConfirmationStatus}" />
-	    <h:outputText value="#{orderBean.order.status}" />
+	    <h:outputText value="#{orderBean.order.status.asString()}" />
 	</h:panelGrid>
+	<p/>
 	<h:form id="startpageLinkForm">
 	    <h:commandLink value="#{texts.startpage}" action="#{navigationBean.goToCatalogSearch()}" />
 	</h:form>

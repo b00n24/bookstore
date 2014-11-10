@@ -2,6 +2,8 @@ package org.books.beans;
 
 import java.io.Serializable;
 import java.util.LinkedList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
@@ -45,21 +47,21 @@ public class NavigationBean implements Serializable {
 	saveCurrentPage();
 	return goToPage(Pages.PAGE_REGISTRATION);
     }
-    
+
     public String goToAccount() {
 	saveCurrentPage();
 	return goToPage(Pages.PAGE_ACCOUNT);
     }
-    
+
     public String goToCustomerDetails() {
 	saveCurrentPage();
 	return goToPage(Pages.PAGE_CUSTOMER_DETAILS);
     }
-    
+
     public String goToOrderConfirmation() {
 	saveCurrentPage();
 	return goToPage(Pages.PAGE_ORDER_CONFIRMATION);
-    }    
+    }
 
     private String goToLogin() {
 	return Pages.PAGE_LOGIN.getPageName();
@@ -82,14 +84,26 @@ public class NavigationBean implements Serializable {
     }
 
     private void saveCurrentPage() {
-	Pages currentView = Pages.getPage(FacesContext.getCurrentInstance().getViewRoot().getViewId());
+	Pages currentView = getCurrentView();
 	Pages previousView = history.isEmpty() ? null : history.peek();
 	if (previousView == null || !previousView.equals(currentView)) {
 	    history.push(currentView);
 	}
     }
 
-    private enum Pages {
+    private static Pages getCurrentView() {
+	return Pages.getPage(FacesContext.getCurrentInstance().getViewRoot().getViewId());
+    }
+
+    public String getHeaderStyle(String page) {
+	Pages currentView = getCurrentView();
+	if (currentView == Pages.valueOf(page)) {
+	    return "active important";
+	}
+	return "";
+    }
+
+    public enum Pages {
 
 	PAGE_CATALOG_SEARCH("/catalogSearch.xhtml", false),
 	PAGE_BOOK_DETAILS("/bookDetails.xhtml", false),
@@ -98,7 +112,7 @@ public class NavigationBean implements Serializable {
 	PAGE_LOGIN("/login.xhtml", false),
 	PAGE_REGISTRATION("/registration.xhtml", false),
 	PAGE_ACCOUNT("/account.xhtml", true),
-	PAGE_CUSTOMER_DETAILS("/customerDetails.xhtml", true), 
+	PAGE_CUSTOMER_DETAILS("/customerDetails.xhtml", true),
 	PAGE_ORDER_CONFIRMATION("/orderConfirmation.xhtml", true);
 
 	private final String pageName;

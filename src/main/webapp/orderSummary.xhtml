@@ -14,21 +14,29 @@
         <h:form id="orderSummaryUserForm">
             <h:panelGrid columns="2">
                 <h:outputLabel value="#{texts.checkoutName}" />
-                <h:outputText value="#{orderBean.customer.firstName} #{orderBean.customer.lastName}" />
+                <h:outputText value="#{loginBean.customer.firstName} #{loginBean.customer.lastName}" />
                 <h:outputLabel value="#{texts.email}" />
-                <h:outputText value="#{orderBean.email}" />
+                <h:outputText value="#{loginBean.customer.email}" />
                 <h:outputLabel value="#{texts.address}" />
 		<h:panelGrid columns="1">
-		    <h:outputText value="#{orderBean.address.street}" />
-		    <h:outputText value="#{orderBean.address.city}" />
-		    <h:outputText value="#{orderBean.address.postalCode}" />
-		    <h:outputText value="#{orderBean.address.country}" />
+		    <h:outputText value="#{loginBean.customer.address.street}" />
+		    <h:outputText value="#{loginBean.customer.address.city}" />
+		    <h:outputText value="#{loginBean.customer.address.postalCode}" />
+		    <h:outputText value="#{loginBean.customer.address.country}" />
 		</h:panelGrid>
 		<h:outputLabel value="#{texts.creditCard}" />
 		<h:panelGrid columns="1">
-		    <h:outputText value="#{orderBean.creditCard.type}" />
-		    <h:outputText value="#{orderBean.creditCard.number}" />
-		    <h:outputText value="#{orderBean.creditCardExpireDate()}" />
+		    <h:outputText value="#{loginBean.customer.creditCard.type}" />
+		    <h:outputText value="#{loginBean.customer.creditCard.number}" />
+		    <h:panelGroup>
+			<h:outputText value="#{loginBean.customer.creditCard.expirationMonth}" >
+			    <f:convertNumber pattern="00" />
+			</h:outputText>
+			/
+			<h:outputText value="#{loginBean.customer.creditCard.expirationYear}">
+			    <f:converter converterId="org.books.converter.CreditCardYearConverter" />
+			</h:outputText>
+		    </h:panelGroup>
 		</h:panelGrid>
             </h:panelGrid>
 	    <h:commandButton value="#{texts.btnChange}" action="#{navigationBean.goToCustomerDetails()}" />
