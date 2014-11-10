@@ -62,8 +62,9 @@ public class LoginBean implements Serializable {
     
     public String logout(){
 	this.customer = null;
-	FacesContext.getCurrentInstance().getExternalContext()
-	    .invalidateSession();
+	// We don't destroy the session in order to be able to keep the language.
+//	FacesContext.getCurrentInstance().getExternalContext()
+//	    .invalidateSession();
 	return navigation.goToCatalogSearch();
     }
 

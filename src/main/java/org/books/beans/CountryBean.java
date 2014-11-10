@@ -43,7 +43,6 @@ public class CountryBean implements Serializable {
     }
 
     public class Country {
-
 	private final String code;
 	private final String name;
 

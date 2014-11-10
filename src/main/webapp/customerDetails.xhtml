@@ -49,7 +49,13 @@
 		    <f:selectItem itemLabel="Visa" itemValue="Visa" />
 		</h:selectOneMenu>
                 <h:outputText value="#{texts.cardNumber}" />
-                <h:inputText value="#{loginBean.customer.creditCard.number}" size="20" />
+		<h:panelGroup>
+		    <h:inputText id="creditCardNumber" value="#{loginBean.customer.creditCard.number}" size="20">
+			<f:validator validatorId="org.books.converter.CreditCardNumberValidator" />
+			<f:converter converterId="org.books.converter.CreditCardNumberConverter" />
+		    </h:inputText>
+		    <h:message for="creditCardNumber" errorClass="error" showSummary="true" showDetail="false" />
+		</h:panelGroup>
                 <h:outputText value="#{texts.cardValidTo}" />
 		<h:panelGroup>
 		    <h:inputText value="#{loginBean.customer.creditCard.expirationMonth}" size="1" maxlength="2" />
@@ -58,7 +64,7 @@
 		</h:panelGroup>
             </h:panelGrid>
 	    <p/>
-	    <h:messages showSummary="true" showDetail="false" errorClass="error" infoClass="info" layout="table" />
+	    <h:messages showSummary="true" showDetail="false" errorClass="error" infoClass="info" layout="table" globalOnly="true" />
 	    <p/>
 	    <h:commandButton value="#{texts.btnSave}" />
 	    <h:outputText value=" " />

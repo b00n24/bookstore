@@ -2,6 +2,7 @@ package org.books.beans;
 
 import java.io.Serializable;
 import java.util.Locale;
+import javax.annotation.PostConstruct;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
@@ -14,8 +15,16 @@ import javax.faces.context.FacesContext;
 @SessionScoped
 public class LocaleBean implements Serializable {
 
+    private Locale locale;
+
+    @PostConstruct
+    public void init() {
+	FacesContext context = FacesContext.getCurrentInstance();
+	locale = context.getApplication().getViewHandler().calculateLocale(context);
+    }
+
     public Locale getLocale() {
-	return FacesContext.getCurrentInstance().getViewRoot().getLocale();
+	return locale;
     }
 
     public void setGerman() {
@@ -35,6 +44,6 @@ public class LocaleBean implements Serializable {
     }
 
     private void changeLocale(Locale locale) {
-	FacesContext.getCurrentInstance().getViewRoot().setLocale(locale);
+	this.locale = locale;
     }
 }

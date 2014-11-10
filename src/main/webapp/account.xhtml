@@ -29,7 +29,9 @@
 		<h:outputText value="#{texts.creditCard}" />
                 <h:outputText value="#{loginBean.customer.creditCard.type}" />
 		<h:outputText value="" />
-                <h:outputText value="#{loginBean.customer.creditCard.number}" />
+		<h:outputText id="creditCardNumber" value="#{loginBean.customer.creditCard.number}">
+		    <f:converter converterId="org.books.converter.CreditCardNumberConverter" />
+		</h:outputText>
 		<h:outputText value="" />
 		<h:panelGroup>
 		    <h:outputText value="#{loginBean.customer.creditCard.expirationMonth}" />

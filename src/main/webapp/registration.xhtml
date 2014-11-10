@@ -14,51 +14,86 @@
         <h:form id="registerForm">
             <h:panelGrid columns="2">
                 <h:outputText value="#{texts.firstname}" />
-                <h:inputText value="#{customerBean.customer.firstName}" size="30" />
+		<h:panelGroup>
+		    <h:inputText id="firstName" value="#{customerBean.customer.firstName}" size="30" required="true" />
+		    <h:message for="firstName" errorClass="error" showSummary="true" showDetail="false" />
+		</h:panelGroup>
                 <h:outputText value="#{texts.lastname}" />
-                <h:inputText value="#{customerBean.customer.lastName}" size="30" />
+		<h:panelGroup>
+		    <h:inputText id="lastname" value="#{customerBean.customer.lastName}" size="30" required="true" />
+		    <h:message for="lastname" errorClass="error" showSummary="true" showDetail="false" />
+		</h:panelGroup>
                 <h:outputText value="#{texts.email}" />
-                <h:inputText value="#{customerBean.customer.email}" size="30" />
+		<h:panelGroup>
+		    <h:inputText id="email" value="#{customerBean.customer.email}" size="30" required="true" />
+		    <h:message for="email" errorClass="error" showSummary="true" showDetail="false" />
+		</h:panelGroup>
                 <h:outputText value="#{texts.password}" />
-		<h:inputText value="#{customerBean.customer.password}" size="30" />
+		<h:panelGroup>
+		    <h:inputText id="password" value="#{customerBean.customer.password}" size="30" required="true" />
+		    <h:message for="password" errorClass="error" showSummary="true" showDetail="false" />
+		</h:panelGroup>
             </h:panelGrid>
 
 	    <p/>
 	    <h:outputText value="#{texts.address}" styleClass="subheading"/>
 	    <h:panelGrid columns="2">
                 <h:outputText value="#{texts.street}" />
-                <h:inputText value="#{customerBean.customer.address.street}" size="30" />
+		<h:panelGroup>
+		    <h:inputText id="street" value="#{customerBean.customer.address.street}" size="30" required="true"/>
+		    <h:message for="street" errorClass="error" showSummary="true" showDetail="false" />
+		</h:panelGroup>
                 <h:outputText value="#{texts.city}" />
-                <h:inputText value="#{customerBean.customer.address.city}" size="30" />
+		<h:panelGroup>
+		    <h:inputText id="city" value="#{customerBean.customer.address.city}" size="30" required="true"/>
+		    <h:message for="city" errorClass="error" showSummary="true" showDetail="false" />
+		</h:panelGroup>
                 <h:outputText value="#{texts.postalCode}" />
-                <h:inputText value="#{customerBean.customer.address.postalCode}" size="5" />
+		<h:panelGroup>
+		    <h:inputText id="postalCode" value="#{customerBean.customer.address.postalCode}" size="5" required="true"/>
+		    <h:message for="postalCode" errorClass="error" showSummary="true" showDetail="false" />
+		</h:panelGroup>
                 <h:outputText value="#{texts.country}" />
-		<h:selectOneMenu value="#{customerBean.customer.address.country}">
-		    <f:selectItems value="#{countryBean.countries}" var="country" 
-				   itemLabel="#{country.name}" itemValue="#{country.code}" />
-		</h:selectOneMenu>
+		<h:panelGroup>
+		    <h:selectOneMenu id="country" value="#{customerBean.country}" required="true">
+			<f:selectItems value="#{countryBean.countries}" var="country" 
+				       itemLabel="#{country.name}" itemValue="#{country.code}" />
+		    </h:selectOneMenu>
+		    <h:message for="country" errorClass="error" showSummary="true" showDetail="false" />
+		</h:panelGroup>
             </h:panelGrid>
 
 	    <p/>
 	    <h:outputText value="#{texts.creditCard}" styleClass="subheading"/>
 	    <h:panelGrid columns="2">
                 <h:outputText value="#{texts.cardType}" />
-		<h:selectOneMenu value="#{customerBean.customer.creditCard.type}">
-		    <f:selectItem itemLabel="" itemValue="" />
-		    <f:selectItem itemLabel="Mastercard" itemValue="MasterCard" />
-		    <f:selectItem itemLabel="Visa" itemValue="Visa" />
-		</h:selectOneMenu>
+		<h:panelGroup>
+		    <h:selectOneMenu id="type" value="#{customerBean.customer.creditCard.type}" required="true">
+			<f:selectItem itemLabel="" itemValue="" />
+			<f:selectItem itemLabel="Mastercard" itemValue="MasterCard" />
+			<f:selectItem itemLabel="Visa" itemValue="Visa" />
+		    </h:selectOneMenu>
+		    <h:message for="type" errorClass="error" showSummary="true" showDetail="false" />
+		</h:panelGroup>
                 <h:outputText value="#{texts.cardNumber}" />
-                <h:inputText value="#{customerBean.customer.creditCard.number}" size="20" />
+		<h:panelGroup>
+		    <h:inputText id="creditCardNumber" value="#{customerBean.customer.creditCard.number}" size="20">
+			<f:validator validatorId="org.books.converter.CreditCardNumberValidator" />
+			<f:converter converterId="org.books.converter.CreditCardNumberConverter" />
+		    </h:inputText>
+		    <h:message for="creditCardNumber" errorClass="error" showSummary="true" showDetail="false" />
+		</h:panelGroup>
                 <h:outputText value="#{texts.cardValidTo}" />
 		<h:panelGroup>
-		    <h:inputText value="#{customerBean.customer.creditCard.expirationMonth}" size="1" maxlength="2" />
+		    <h:inputText id="expirationMonth" value="#{customerBean.customer.creditCard.expirationMonth}" size="1" maxlength="2" required="true" />
 		    /
-		    <h:inputText value="#{customerBean.customer.creditCard.expirationYear}" size="1" maxlength="2" />
+		    <h:inputText id="expirationYear" value="#{customerBean.customer.creditCard.expirationYear}" size="1" maxlength="2" required="true" />
+		    <h:message for="expirationMonth" errorClass="error" showSummary="true" showDetail="false" />
+		    <h:message for="expirationYear" errorClass="error" showSummary="true" showDetail="false" />
 		</h:panelGroup>
             </h:panelGrid>
 	    <p/>
-	    <h:messages showSummary="true" showDetail="false" errorClass="error" infoClass="info" layout="table" />
+	    <h:messages showSummary="true" showDetail="false" errorClass="error" infoClass="info" layout="table" globalOnly="true" />
 	    <p/>
 	    <h:commandButton value="#{texts.register}" action="#{customerBean.register()}" />
 	    <h:outputText value=" " />

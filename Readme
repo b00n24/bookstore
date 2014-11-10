@@ -8,3 +8,4 @@ Special-Features:
 - Einkaufswagen nur klickbar, wenn etwas im Einkaufswagen ist.
 - Logout
 - Länderliste in 2 Sprachen und beide sortiert
+- We don't destroy the session in order to be able to keep the language. FacesContext.getCurrentInstance().getExternalContext()

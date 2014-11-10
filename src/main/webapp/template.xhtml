@@ -3,13 +3,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <f:view locale="#{localeBean.locale}" encoding="UTF-8" contentType="text/html">
+      xmlns:f="http://xmlns.jcp.org/jsf/core" lang="#{localeBean.locale.language}">
+    <f:view locale="#{localeBean.locale}" encoding="UTF-8" contentType="text/html" >
 	<h:head>
 	    <title>#{texts.htmlTitle}</title>
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	    <meta name="language" lang="#{localeBean.locale.language}" />
 	    <h:outputStylesheet name="styles.css"/>
-	    <!--<h:outputStylesheet name="bootstrap.css"/>-->
 	</h:head>
 	<h:body>
 	    <ui:insert name="header"/>
@@ -17,3 +17,4 @@
 	</h:body>
     </f:view>
 </html>
+

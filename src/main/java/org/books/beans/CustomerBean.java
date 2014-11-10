@@ -1,8 +1,10 @@
 package org.books.beans;
 
 import java.io.Serializable;
+import java.util.Locale;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import org.books.application.exception.EmailAlreadyUsedException;
 import org.books.persistence.Customer;
@@ -23,6 +25,8 @@ public class CustomerBean implements Serializable {
     private CustomerService customerService;
     @Inject
     private LoginBean loginBean;
+    @Inject
+    private LocaleBean localeBean;
 
     private Customer customer;
 
@@ -36,6 +40,15 @@ public class CustomerBean implements Serializable {
 
     public void setCustomer(Customer customer) {
 	this.customer = customer;
+    }
+
+    public String getCountry() {
+	Locale currentLocale = FacesContext.getCurrentInstance().getViewRoot().getLocale();
+	return customer.getAddress().getCountry() == null ? currentLocale.getCountry() : customer.getAddress().getCountry();
+    }
+
+    public void setCountry(String country) {
+	customer.getAddress().setCountry(country);
     }
 
     public String register() {
