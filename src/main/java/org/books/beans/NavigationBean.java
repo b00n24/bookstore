@@ -55,12 +55,17 @@ public class NavigationBean implements Serializable {
 	saveCurrentPage();
 	return goToPage(Pages.PAGE_CUSTOMER_DETAILS);
     }
+    
+    public String goToOrderConfirmation() {
+	saveCurrentPage();
+	return goToPage(Pages.PAGE_ORDER_CONFIRMATION);
+    }    
 
     private String goToLogin() {
 	return Pages.PAGE_LOGIN.getPageName();
     }
 
-    String goToNextPage() {
+    public String goToNextPage() {
 	return nextView == null ? Pages.PAGE_CATALOG_SEARCH.getPageName() : nextView.getPageName();
     }
 
@@ -93,7 +98,8 @@ public class NavigationBean implements Serializable {
 	PAGE_LOGIN("/login.xhtml", false),
 	PAGE_REGISTRATION("/registration.xhtml", false),
 	PAGE_ACCOUNT("/account.xhtml", true),
-	PAGE_CUSTOMER_DETAILS("/customerDetails.xhtml", true);
+	PAGE_CUSTOMER_DETAILS("/customerDetails.xhtml", true), 
+	PAGE_ORDER_CONFIRMATION("/orderConfirmation.xhtml", true);
 
 	private final String pageName;
 	private final boolean loginNeeded;

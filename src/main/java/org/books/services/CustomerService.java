@@ -1,7 +1,6 @@
 package org.books.services;
 
 import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import org.books.application.Bookstore;
 import org.books.application.exception.EmailAlreadyUsedException;

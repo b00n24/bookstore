@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition template="template.xhtml" 
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:define name="header">
+        <ui:include src="header.xhtml">
+            <ui:param name="pageTitle" value="#{texts.orderConfirmationPageTitle}" />
+        </ui:include>
+    </ui:define>
+
+    <ui:define name="content">
+	<h:outputText value="#{texts.orderConfirmationMsg}" />
+	<h:panelGrid columns="2">
+	    <h:outputLabel value="#{texts.orderConfirmationNr}" />
+	    <h:outputText value="#{orderBean.order.number}" />
+	    <h:outputLabel value="#{texts.orderConfirmationDate}" />
+	    <h:outputText value="#{orderBean.order.date}" />
+	    <h:outputLabel value="#{texts.orderConfirmationAmount}" />
+	    <h:outputText value="#{orderBean.order.amount}" />
+	    <h:outputLabel value="#{texts.orderConfirmationStatus}" />
+	    <h:outputText value="#{orderBean.order.status}" />
+	</h:panelGrid>
+	<h:form id="startpageLinkForm">
+	    <h:commandLink value="#{texts.startpage}" action="#{navigationBean.goToCatalogSearch()}" />
+	</h:form>
+    </ui:define>
+</ui:composition>
