@@ -32,6 +32,8 @@ public class CountryBean implements Serializable {
 	CountryNameComparator comp = new CountryNameComparator();
 	Collections.sort(countriesDe, comp);
 	Collections.sort(countriesEn, comp);
+	countriesDe.add(0, new Country("", ""));
+	countriesEn.add(0, new Country("", ""));
     }
 
     public List<Country> getCountries() {
