@@ -43,8 +43,8 @@ public class CustomerBean implements Serializable {
     }
 
     public String getCountry() {
-	Locale currentLocale = FacesContext.getCurrentInstance().getViewRoot().getLocale();
-	return customer.getAddress().getCountry() == null ? currentLocale.getCountry() : customer.getAddress().getCountry();
+	Locale currentLocale = FacesContext.getCurrentInstance().getExternalContext().getRequestLocale();
+	return customer == null || customer.getAddress() == null || customer.getAddress().getCountry() == null ? currentLocale.getCountry() : customer.getAddress().getCountry();
     }
 
     public void setCountry(String country) {
