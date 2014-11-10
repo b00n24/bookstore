@@ -32,7 +32,7 @@ public class CreditCardNumberConverter implements Converter {
 	if (value == null) {
 	    return null;
 	}
-	String val = (String) value;
+	String val = String.valueOf(value);
 	val = val.trim();
 
 	final StringBuffer sb = new StringBuffer(val);

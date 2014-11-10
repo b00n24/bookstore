@@ -63,3 +63,8 @@ p {
 .price {
 	text-align: right;
 }
+
+.addressLabelFixedWidth {
+    display: block;
+    width: 100px;
+}
