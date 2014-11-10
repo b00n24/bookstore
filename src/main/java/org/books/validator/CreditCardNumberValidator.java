@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.books.validator;
 
 import java.util.regex.Matcher;
@@ -41,7 +36,7 @@ public class CreditCardNumberValidator implements Validator, StateHolder {
 	if (!(value instanceof String)) {
 	    throwError(VALIDATOR_INVALID_NUMBER);
 	}
-	String val = (String) value;
+	String val = String.valueOf(value);
 
 	checkNumberFormat(val);
 	checkLuhnDigit(val);

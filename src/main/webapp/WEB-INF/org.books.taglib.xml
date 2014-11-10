@@ -9,4 +9,12 @@
 	    </validator-id>
 	</validator>
     </tag>
+    <tag>
+	<tag-name>validateCreditCardExpirationDate</tag-name>
+	<validator>
+	    <validator-id>
+		org.books.validator.CreditCardExpirationDateValidator
+	    </validator-id>
+	</validator>
+    </tag>
 </facelet-taglib>
