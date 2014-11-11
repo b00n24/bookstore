@@ -38,6 +38,7 @@ public class OrderBean implements Serializable {
 
     private Order order;
 
+    private static final Logger logger = Logger.getLogger(OrderBean.class.getName());
 
     public List<LineItem> getItems() {
 	return shoppingCartBean.getItems();
@@ -56,6 +57,7 @@ public class OrderBean implements Serializable {
     public String send() {
 	try {
 	    this.order = bookstore.placeOrder(loginBean.getCustomer(), getItems());
+	    logger.log(Level.SEVERE, loginBean.getCustomer().toString());
 	    shoppingCartBean.clearCart();
 	    return navigationBean.goToOrderConfirmation();
 	} catch (PaymentFailedException ex) {

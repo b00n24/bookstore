@@ -2,8 +2,6 @@ package org.books.beans;
 
 import java.io.Serializable;
 import java.util.LinkedList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
@@ -62,6 +60,11 @@ public class NavigationBean implements Serializable {
 	saveCurrentPage();
 	return goToPage(Pages.PAGE_ORDER_CONFIRMATION);
     }
+    
+    public String goToOrderDetail() {
+	saveCurrentPage();
+	return goToPage(Pages.PAGE_ORDER_DETAIL);
+    }
 
     private String goToLogin() {
 	return Pages.PAGE_LOGIN.getPageName();
@@ -113,7 +116,8 @@ public class NavigationBean implements Serializable {
 	PAGE_REGISTRATION("/registration.xhtml", false),
 	PAGE_ACCOUNT("/account.xhtml", true),
 	PAGE_CUSTOMER_DETAILS("/customerDetails.xhtml", true),
-	PAGE_ORDER_CONFIRMATION("/orderConfirmation.xhtml", true);
+	PAGE_ORDER_CONFIRMATION("/orderConfirmation.xhtml", true),
+	PAGE_ORDER_DETAIL("/orderDetails.xhtml", true);
 
 	private final String pageName;
 	private final boolean loginNeeded;

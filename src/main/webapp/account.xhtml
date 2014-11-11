@@ -43,26 +43,22 @@
 		    </h:outputText>
 		</h:panelGroup>
             </h:panelGrid>
-
-	    <p/>
-	    <h:messages showSummary="true" showDetail="false" errorClass="error" infoClass="info" layout="table" globalOnly="true" />
 	    <p/>
 	    <h:commandButton value="#{texts.btnChange}" action="#{navigationBean.goToCustomerDetails()}" />
-	    <p/>
-            <h:commandLink value="#{texts.back}" action="#{navigationBean.goBack()}" immediate="true" />
         </h:form>
 	<p/>
 	<h:form id="bestellungForm">
 	    <h:outputText value="#{texts.accountOrder}" styleClass="subheading"/>
-	    <h:panelGroup>
+	    <h:panelGrid columns="4">
 		<h:outputLabel for="searchYear" value="#{texts.accountYear}"/>
-		<h:inputText id="searchYear" value="#{accountBean.searchYear}" size="4" validatorMessage="#{texts.accountInvalidYeahr}">
+		<h:inputText id="searchYear" value="#{accountBean.searchYear}" size="4" validatorMessage="#{texts.accountInvalidYeahr}" required="true">
 		    <f:validateLongRange minimum="1000" maximum="9999" />
 		</h:inputText>
 		<h:commandButton value="#{texts.btnSearch}" action="#{accountBean.searchOrders()}" />
 		<h:message for="searchYear"  errorClass="error" showSummary="true" showDetail="false" />
-	    </h:panelGroup>
+	    </h:panelGrid>
 	    <p/>
+	    <h:messages showSummary="true" showDetail="false" errorClass="error" infoClass="info" layout="table" globalOnly="true" />
 	    <h:dataTable value="#{accountBean.searchResult}" var="order" rendered="#{not empty accountBean.searchResult}">
 		<h:column>
 		    <f:facet name="header">
@@ -93,7 +89,9 @@
 		<h:column>
 		    <h:commandButton value="#{texts.cancel}" action="#{accountBean.cancelOrder(order)}" rendered="#{order.status == 'accepted' || order.status == 'processing'}" />
 		</h:column>
-	    </h:dataTable>		
+	    </h:dataTable>	
+	    <p/>
+	    <h:commandLink value="#{texts.back}" action="#{navigationBean.goBack()}" immediate="true" />
 	</h:form>
     </ui:define>
 </ui:composition>

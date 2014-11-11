@@ -15,5 +15,4 @@
         </resource-bundle>
 	<message-bundle>bundles.messages</message-bundle>
     </application>
-
 </faces-config>

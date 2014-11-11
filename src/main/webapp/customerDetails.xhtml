@@ -67,8 +67,7 @@
 	    <p/>
 	    <h:messages showSummary="true" showDetail="false" errorClass="error" infoClass="info" layout="table" globalOnly="true" />
 	    <p/>
-	    <h:commandButton value="#{texts.btnSave}" />
-	    <h:outputText value=" " />
+	    <h:commandButton value="#{texts.btnSave}" action="#{customerBean.updateCustomer()}" />
 	    <h:commandButton value="#{texts.cancel}" action="#{navigationBean.goBack()}" immediate="true" />
         </h:form>
     </ui:define>

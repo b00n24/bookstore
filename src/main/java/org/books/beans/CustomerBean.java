@@ -26,7 +26,7 @@ public class CustomerBean implements Serializable {
     @Inject
     private LoginBean loginBean;
     @Inject
-    private LocaleBean localeBean;
+    private NavigationBean navigationBean;
 
     private Customer customer;
 
@@ -54,12 +54,22 @@ public class CustomerBean implements Serializable {
     public String register() {
 	try {
 	    customerService.register(customer);
+	    return login();
 	} catch (EmailAlreadyUsedException ex) {
 	    //klappt noch nicht
 	    MessageFactory.error(WARNING_USER_EXISTS, customer.getEmail());
 	    return null;
 	}
-	return login();
+    }
+
+    public String updateCustomer() {
+	try {
+	    customerService.updateCustomer(loginBean.getCustomer());
+	    return navigationBean.goBack();
+	} catch (EmailAlreadyUsedException ex) {
+	    MessageFactory.error(WARNING_USER_EXISTS, loginBean.getEmail());
+	    return null;
+	}
     }
 
     /**

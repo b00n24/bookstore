@@ -24,4 +24,8 @@ public class CustomerService {
     public Customer authenticate(String email, String password) throws InvalidCredentialsException {
 	return bookstore.authenticateCustomer(email, password);
     }
+    
+    public Customer updateCustomer(Customer customer) throws EmailAlreadyUsedException{
+	return bookstore.updateCustomer(customer);
+    }
 }
