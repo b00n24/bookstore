@@ -224,7 +224,7 @@ public class Bookstore {
 		order.setStatus(Order.Status.accepted);
 		order.setAmount(amount);
 		customer = customers.get(customer.getId());
-		order.setCustomer(customer);
+		order.setCustomer(clone(customer));
 		order.setAddress(clone(customer.getAddress()));
 		order.setCreditCard(clone(customer.getCreditCard()));
 		for (LineItem item : items) {
