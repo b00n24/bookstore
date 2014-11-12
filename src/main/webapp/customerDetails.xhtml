@@ -57,10 +57,12 @@
 		<h:panelGroup>
 		    <h:inputText value="#{loginBean.customer.creditCard.expirationMonth}" size="1" maxlength="2">
 			<f:convertNumber pattern="00" />
+			<f:validateLongRange minimum="1" maximum="12" />
 		    </h:inputText>
 		    /
 		    <h:inputText value="#{loginBean.customer.creditCard.expirationYear}" size="1" maxlength="2">
 			<f:converter converterId="org.books.converter.CreditCardYearConverter" />
+			<card:validateCreditCardExpirationDate cardExpirationMonthId="expirationMonth" />
 		    </h:inputText>
 		</h:panelGroup>
             </h:panelGrid>
@@ -68,6 +70,7 @@
 	    <h:messages showSummary="true" showDetail="false" errorClass="error" infoClass="info" layout="table" globalOnly="true" />
 	    <p/>
 	    <h:commandButton value="#{texts.btnSave}" action="#{customerBean.updateCustomer()}" />
+	    <h:outputText value=" " />
 	    <h:commandButton value="#{texts.cancel}" action="#{navigationBean.goBack()}" immediate="true" />
         </h:form>
     </ui:define>
