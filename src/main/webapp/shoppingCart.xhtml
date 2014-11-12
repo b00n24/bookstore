@@ -45,7 +45,9 @@
                     <f:facet name="header">
                         <h:outputText value="#{texts.cartQuantity}" />
                     </f:facet>
-                    <h:inputText value="#{item.quantity}" size="3"/>
+                    <h:inputText value="#{item.quantity}" size="3">
+			<f:ajax event="keyup" render="@form" />
+		    </h:inputText>
                 </h:column>
                 <h:column>
                     <f:facet name="header">
@@ -56,8 +58,6 @@
             </h:dataTable>
 
             <h:outputText value="#{texts.cartIsEmpty}" rendered="#{empty shoppingCartBean.items}" />
-            <p/>
-            <h:commandButton value="#{texts.cartUpdate}" rendered="#{not empty shoppingCartBean.items}"/>
         <p/>
         <h:commandLink value="#{texts.back}" action="#{navigationBean.goBack()}" />
         </h:form>

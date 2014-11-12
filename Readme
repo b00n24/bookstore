@@ -1,4 +1,4 @@
-- W�hrung fehlt beim Book-Objekt. Daher zeigen wir keine Währung an. Man m�sste diese mitschicken und dann je nach Locale z.B. mit einem Konverter-Webservice umwandeln.
+- Währung fehlt beim Book-Objekt. Daher zeigen wir keine Währung an. Man m�sste diese mitschicken und dann je nach Locale z.B. mit einem Konverter-Webservice umwandeln.
 - TODO Nullpointer wenn Benutzer via URL navigiert und Funktionen aufruft, die er gar nicht dürfte... 
 Special-Features:
 - TODO: Das aktive Menuitem wird visuell hervorgehoben.
@@ -12,3 +12,4 @@ Special-Features:
 - Taglib Version 2.1
 - Composite Component (requiredField.xhtml) für required fields mit Label und Input/Secret Field mit diversen Attribute.
 - Creditcard: Kontrolle, ob das Datum in der Zukunft liegt. Abgelaufene Karten werden nicht akzeptiert.
+- Ajax-Call bei Warenkorb->Anzahl
