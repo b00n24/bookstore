@@ -19,4 +19,12 @@
 	    </validator-id>
 	</validator>
     </tag>
+    <tag>
+	<tag-name>validatePassword</tag-name>
+	<validator>
+	    <validator-id>
+		org.books.validator.PasswordValidator
+	    </validator-id>
+	</validator>
+    </tag>
 </facelet-taglib>

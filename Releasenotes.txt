@@ -27,3 +27,5 @@ Special-Features:
 - Neue Namespaces (xmlns.jcp.org anstelle von java.sun.com) benutzt, wo möglich.
 - Globale Error-Page für unerwartete Fehler (unterdrückung des Stacktraces)
 - Benutzen des Attributes "validatorMessage" sowie Überschreiben von Default-Messages verwendet.
+- Passwort Composite-Component: Passwort verifizierung mit 2-fach Eingabe mit AJAX-Verification
+- Möglichkeit, das Passwort zu ändern.
