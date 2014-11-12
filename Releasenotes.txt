@@ -4,6 +4,7 @@ Autoren: Silvan Strüby und Adrian Wyssen
 ----------------
 
 Allgemeine Infos:
+- Allem voran: Wir wissen, dass man noch vieles verbessern kann und dass vor allem die Registration und customerDetails Seite gerade dazu schreien, Komponenten zu machen, da sie fast identisch aussehen. Die Idee war jedoch, in unserer Zeit möglichst viele verschiedene Features einzubauen, um davon zu profitieren, dies einmal benutzt zu haben. Daher haben wir die Priorität auf die Anzahl Features und nicht auf die konsequente Umsetzung der Features an allen möglichen Orten gesetzt.
 - Währung fehlt beim Book-Objekt. Daher zeigen wir keine Währung an. Man müsste diese mitschicken und dann je nach Locale z.B. mit einem Konverter-Webservice umwandeln.
 - Der Benutzer kann momentan auf Seiten kommen, die er eigentlich nicht sehen sollte (durch direkte Eingabe der URL). Er sieht jedoch nur die leere Seite ohne Werte. Dies sollte jedoch definitiv verhindert werden -> Werden wir wohl im Security-Modul sehen.
 
@@ -25,3 +26,4 @@ Special-Features:
 - Project-Stage im web.xml von Development auf Production umgestellt
 - Neue Namespaces (xmlns.jcp.org anstelle von java.sun.com) benutzt, wo möglich.
 - Globale Error-Page für unerwartete Fehler (unterdrückung des Stacktraces)
+- Benutzen des Attributes "validatorMessage" sowie Überschreiben von Default-Messages verwendet.
