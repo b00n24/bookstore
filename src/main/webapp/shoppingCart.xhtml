@@ -45,16 +45,18 @@
                     <f:facet name="header">
                         <h:outputText value="#{texts.cartQuantity}" />
                     </f:facet>
-                    <h:inputText value="#{item.quantity}" size="3">
-			<f:ajax event="keyup" render="@form" />
+                    <h:inputText id="quantity" value="#{item.quantity}" size="3" validatorMessage="#{texts.invalidQuantity}">
+			<f:ajax event="blur" render="@all" />
+			<f:validateLongRange minimum="1" />
 		    </h:inputText>
                 </h:column>
                 <h:column>
                     <f:facet name="header">
                         <h:outputText value="#{texts.action}" />
                     </f:facet>
-                    <h:commandButton value="Remove" action="#{shoppingCartBean.remove(item)}"/>
+                    <h:commandButton value="#{texts.btnRemove}" action="#{shoppingCartBean.remove(item)}"/>
                 </h:column>
+		<h:column><h:message for="quantity" errorClass="error" showSummary="true" showDetail="false" /></h:column>
             </h:dataTable>
 
             <h:outputText value="#{texts.cartIsEmpty}" rendered="#{empty shoppingCartBean.items}" />
