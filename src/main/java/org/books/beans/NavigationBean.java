@@ -117,7 +117,8 @@ public class NavigationBean implements Serializable {
 	PAGE_ACCOUNT("/account.xhtml", true),
 	PAGE_CUSTOMER_DETAILS("/customerDetails.xhtml", true),
 	PAGE_ORDER_CONFIRMATION("/orderConfirmation.xhtml", true),
-	PAGE_ORDER_DETAIL("/orderDetails.xhtml", true);
+	PAGE_ORDER_DETAIL("/orderDetails.xhtml", true),
+	PAGE_ERROR("/errorPage.xhtml", false);
 
 	private final String pageName;
 	private final boolean loginNeeded;

@@ -32,21 +32,12 @@ public class CatalogBean implements Serializable {
     @Inject
     private NavigationBean navigationBean;
 
-    private String isbn;
     private Book book;
 
     // Uebung 3
     private String keywords;
     private List<Book> books = new ArrayList<>();
     private Book selectedBook;
-
-    public void setIsbn(String isbn) {
-	this.isbn = isbn;
-    }
-
-    public String getIsbn() {
-	return isbn;
-    }
 
     public Book getBook() {
 	return book;
