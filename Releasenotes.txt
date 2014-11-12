@@ -23,4 +23,4 @@ Special-Features:
 - Creditcard: Kontrolle, ob das Datum in der Zukunft liegt. Abgelaufene Karten werden nicht akzeptiert.
 - Ajax-Call bei Warenkorb->Anzahl
 - Project-Stage im web.xml von Development auf Production umgestellt
-- Neue Namespaces (xmlns.jcp.org anstelle von java.sun.com) benutzt
+- Neue Namespaces (xmlns.jcp.org anstelle von java.sun.com) benutzt, wo möglich.
