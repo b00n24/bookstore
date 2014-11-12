@@ -6,8 +6,6 @@ import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import javax.inject.Inject;
-import org.books.beans.LocaleBean;
 
 /**
  * The class MessageFactory is used to create faces messages.

@@ -1,3 +1,8 @@
+Release-Notes für den Bookstore v1.0
+Datum: 14.11.2014
+Autoren: Silvan Strüby und Adrian Wyssen
+----------------
+
 Allgemeine Infos:
 - Währung fehlt beim Book-Objekt. Daher zeigen wir keine Währung an. Man müsste diese mitschicken und dann je nach Locale z.B. mit einem Konverter-Webservice umwandeln.
 - Der Benutzer kann momentan auf Seiten kommen, die er eigentlich nicht sehen sollte (durch direkte Eingabe der URL). Er sieht jedoch nur die leere Seite ohne Werte. Dies sollte jedoch definitiv verhindert werden -> Werden wir wohl im Security-Modul sehen.
@@ -13,6 +18,9 @@ Special-Features:
 - Länderliste-Dropdown in 2 Sprachen und beide sortiert.
 - Defaultmässig ist das Land des Browsers im Dropdown ausgewählt.
 - Taglib Version 2.1
-- Composite Component (requiredField.xhtml) für required fields mit Label und Input/Secret Field mit diversen Attributen. 
+- Custom Tag ValidateCreditCardNumber
+- Composite Component (requiredField.xhtml) für required fields mit Label und Input/Secret Field mit diversen Attributen (Seite register und customerDetails)
 - Creditcard: Kontrolle, ob das Datum in der Zukunft liegt. Abgelaufene Karten werden nicht akzeptiert.
 - Ajax-Call bei Warenkorb->Anzahl
+- Project-Stage im web.xml von Development auf Production umgestellt
+- Neue Namespaces (xmlns.jcp.org anstelle von java.sun.com) benutzt
