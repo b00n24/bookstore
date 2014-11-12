@@ -55,15 +55,17 @@
 		</h:panelGroup>
                 <h:outputText value="#{texts.cardValidTo}" styleClass="addressLabelFixedWidth" />
 		<h:panelGroup>
-		    <h:inputText value="#{loginBean.customer.creditCard.expirationMonth}" size="1" maxlength="2">
+		    <h:inputText id="expirationMonth" value="#{loginBean.customer.creditCard.expirationMonth}" size="1" maxlength="2" required="true">
 			<f:convertNumber pattern="00" />
 			<f:validateLongRange minimum="1" maximum="12" />
 		    </h:inputText>
 		    /
-		    <h:inputText value="#{loginBean.customer.creditCard.expirationYear}" size="1" maxlength="2">
+		    <h:inputText id="expirationYear" value="#{loginBean.customer.creditCard.expirationYear}" size="1" maxlength="2" required="true">
 			<f:converter converterId="org.books.converter.CreditCardYearConverter" />
 			<card:validateCreditCardExpirationDate cardExpirationMonthId="expirationMonth" />
 		    </h:inputText>
+		    <h:message for="expirationMonth" errorClass="error" showSummary="true" showDetail="false" />
+		    <h:message for="expirationYear" errorClass="error" showSummary="true" showDetail="false" />
 		</h:panelGroup>
             </h:panelGrid>
 	    <p/>
