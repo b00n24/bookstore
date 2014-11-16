@@ -7,11 +7,11 @@ import java.util.List;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
-import org.books.application.Bookstore;
 import org.books.application.exception.InvalidOrderStatusException;
 import org.books.application.exception.OrderNotFoundException;
 import org.books.persistence.LineItem;
 import org.books.persistence.Order;
+import org.books.services.OrderService;
 import org.books.util.MessageFactory;
 
 /**
@@ -26,7 +26,7 @@ public class AccountBean implements Serializable {
     private static final String INFO_NO_ORDERS_FOUND = "org.books.infoNoOrderFound";
 
     @Inject
-    private Bookstore bookstore;
+    private OrderService orderService;
 
     @Inject
     private LoginBean loginBean;
@@ -56,7 +56,7 @@ public class AccountBean implements Serializable {
 
     public void searchOrders() {
 	reset();
-	this.searchResult = bookstore.searchOrders(loginBean.getCustomer(), searchYear);
+	this.searchResult = orderService.searchOrders(loginBean.getCustomer(), searchYear);
 	if (searchResult.isEmpty()) {
 	    MessageFactory.info(INFO_NO_ORDERS_FOUND);
 	}
@@ -69,7 +69,7 @@ public class AccountBean implements Serializable {
 
     public void cancelOrder(Order order) {
 	try {
-	    Order cancelOrder = bookstore.cancelOrder(order.getId());
+	    Order cancelOrder = orderService.cancelOrder(order.getId());
 	    int indexOf = searchResult.indexOf(order);
 	    searchResult.remove(order);
 	    searchResult.add(indexOf, cancelOrder);

@@ -6,8 +6,8 @@ import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import org.books.application.Bookstore;
 import org.books.persistence.Book;
+import org.books.services.CatalogService;
 import org.books.util.MessageFactory;
 
 /**
@@ -21,7 +21,7 @@ public class CatalogBean implements Serializable {
     private static final String INFO_NO_BOOK_FOUND = "org.books.infoNoBookFound";
 
     @Inject
-    private Bookstore bookstore;
+    private CatalogService catalogService;
     @Inject
     private ShoppingCartBean shoppingCart;
     @Inject
@@ -70,7 +70,7 @@ public class CatalogBean implements Serializable {
 
     public void searchBooks() {
 	reset();
-	this.books = bookstore.searchBooks(keywords);
+	this.books = catalogService.searchBooks(keywords);
 	if (books.isEmpty()) {
 	    MessageFactory.info(INFO_NO_BOOK_FOUND);
 	}

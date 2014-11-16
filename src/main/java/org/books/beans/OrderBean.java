@@ -7,11 +7,11 @@ import java.util.logging.Logger;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
-import org.books.application.Bookstore;
 import org.books.application.exception.PaymentFailedException;
 import org.books.persistence.CreditCard;
 import org.books.persistence.LineItem;
 import org.books.persistence.Order;
+import org.books.services.OrderService;
 import org.books.util.MessageFactory;
 
 /**
@@ -31,7 +31,7 @@ public class OrderBean implements Serializable {
     private NavigationBean navigationBean;
 
     @Inject
-    private Bookstore bookstore;
+    private OrderService orderService;
 
     @Inject
     private ShoppingCartBean shoppingCartBean;
@@ -56,7 +56,7 @@ public class OrderBean implements Serializable {
     // FIXME F5 in orderConfimration erstellt immer eine neue order?!
     public String send() {
 	try {
-	    this.order = bookstore.placeOrder(loginBean.getCustomer(), getItems());
+	    this.order = orderService.placeOrder(loginBean.getCustomer(), getItems());
 	    logger.log(Level.SEVERE, loginBean.getCustomer().toString());
 	    shoppingCartBean.clearCart();
 	    return navigationBean.goToOrderConfirmation();
