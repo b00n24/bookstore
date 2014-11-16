@@ -29,3 +29,4 @@ Special-Features:
 - Custom-Messages mit durch Benutzen des Attributes "validatorMessage" sowie Überschreiben von Default-Messages verwendet.
 - Passwort Composite-Component: Passwort Verifizierung mit 2-fach Eingabe des neuen Passworts und direkter Kontrolle, ob beide gleich sind mit einem AJAX call
 - Möglichkeit, das Passwort zu ändern.
+- Benutzen von Service-Klassen anstelle direkt das Bookstore-Objekt
