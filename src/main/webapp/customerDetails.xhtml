@@ -24,7 +24,7 @@
 	    <comp:requiredField label="#{texts.city}" fieldId="city" value="#{loginBean.customer.address.city}" styleName="addressLabelFixedWidth" />
 	    <comp:requiredField size="5" label="#{texts.postalCode}" fieldId="street" value="#{loginBean.customer.address.postalCode}" styleName="addressLabelFixedWidth" />
             <h:panelGrid columns="2">
-		<h:outputText value="#{texts.country}" styleClass="addressLabelFixedWidth" />
+		<h:outputLabel value="#{texts.country}" styleClass="addressLabelFixedWidth" />
 		<h:panelGroup>
 		    <h:selectOneMenu id="country" value="#{loginBean.customer.address.country}" required="true">
 			<f:selectItems value="#{applicationBean.countries}" var="country" 
@@ -35,9 +35,9 @@
 	    </h:panelGrid>
 
 	    <p/>
-	    <h:outputText value="#{texts.creditCard}" styleClass="subheading"/>
+	    <h:outputLabel value="#{texts.creditCard}" styleClass="subheading"/>
 	    <h:panelGrid columns="2">
-                <h:outputText value="#{texts.cardType}" styleClass="addressLabelFixedWidth" />
+                <h:outputLabel value="#{texts.cardType}" styleClass="addressLabelFixedWidth" />
 		<h:panelGroup>
 		    <h:selectOneMenu id="cardType" value="#{loginBean.customer.creditCard.type}" required="true">
 			<f:selectItems value="#{applicationBean.creditCardTypes}" var="type" 
@@ -45,7 +45,7 @@
 		    </h:selectOneMenu>
 		    <h:message for="cardType" errorClass="error" showSummary="true" showDetail="false" />
 		</h:panelGroup>
-                <h:outputText value="#{texts.cardNumber}" styleClass="addressLabelFixedWidth" />
+                <h:outputLabel value="#{texts.cardNumber}" styleClass="addressLabelFixedWidth" />
 		<h:panelGroup>
 		    <h:inputText id="creditCardNumber" value="#{loginBean.customer.creditCard.number}" size="20">
 			<card:validateCreditCardNumber cardTypeId="cardType" />
@@ -53,7 +53,7 @@
 		    </h:inputText>
 		    <h:message for="creditCardNumber" errorClass="error" showSummary="true" showDetail="false" />
 		</h:panelGroup>
-                <h:outputText value="#{texts.cardValidTo}" styleClass="addressLabelFixedWidth" />
+                <h:outputLabel value="#{texts.cardValidTo}" styleClass="addressLabelFixedWidth" />
 		<h:panelGroup>
 		    <h:inputText id="expirationMonth" value="#{loginBean.customer.creditCard.expirationMonth}" size="1" maxlength="2" required="true">
 			<f:convertNumber pattern="00" />

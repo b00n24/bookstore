@@ -13,21 +13,21 @@
     <ui:define name="content">
         <h:form id="bookDetailsForm" rendered="#{not empty catalogBean.selectedBook}">
             <h:panelGrid columns="2">
-                <h:outputText value="#{texts.isbn}" />
+                <h:outputLabel value="#{texts.isbn}" />
                 <h:outputText value="#{catalogBean.selectedBook.isbn}" />
-                <h:outputText value="#{texts.title}" />
+                <h:outputLabel value="#{texts.title}" />
                 <h:outputText value="#{catalogBean.selectedBook.title}" />
-                <h:outputText value="#{texts.detailAuthors}" />
+                <h:outputLabel value="#{texts.detailAuthors}" />
                 <h:outputText value="#{catalogBean.selectedBook.authors}" />
-                <h:outputText value="#{texts.detailPublisher}" />
+                <h:outputLabel value="#{texts.detailPublisher}" />
                 <h:outputText value="#{catalogBean.selectedBook.publisher}" />
-                <h:outputText value="#{texts.detailPublicationYear}" />
+                <h:outputLabel value="#{texts.detailPublicationYear}" />
                 <h:outputText value="#{catalogBean.selectedBook.publicationYear}" />
-                <h:outputText value="#{texts.detailBinding}" />
+                <h:outputLabel value="#{texts.detailBinding}" />
                 <h:outputText value="#{catalogBean.selectedBook.binding}" />
-                <h:outputText value="#{texts.detailNumberOfPages}" />
+                <h:outputLabel value="#{texts.detailNumberOfPages}" />
                 <h:outputText value="#{catalogBean.selectedBook.numberOfPages}" />
-                <h:outputText value="#{texts.price}" />
+                <h:outputLabel value="#{texts.price}" />
                 <h:outputText value="#{catalogBean.selectedBook.price}" />
             </h:panelGrid>
 	    <p/>

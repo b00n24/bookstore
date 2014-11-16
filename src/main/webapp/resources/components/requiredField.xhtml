@@ -13,7 +13,7 @@
     </composite:interface>
     <composite:implementation>
 	<h:panelGrid columns="2">
-	    <h:outputText value="#{cc.attrs.label}" styleClass="#{cc.attrs.styleName}" />
+	    <h:outputLabel value="#{cc.attrs.label}" styleClass="#{cc.attrs.styleName}" />
 	    <h:panelGroup>
 		<cc:choose>
 		    <cc:when test="#{cc.attrs.secret}">
