@@ -53,7 +53,7 @@ public class CreditCardExpirationDateValidator implements Validator, StateHolder
 	    if (input.getValue() instanceof Integer) {
 		month = (Integer) input.getValue();
 	    } else {
-		month = parseIntOrThrowValidationError((String) input.getValue());
+		month = parseIntOrThrowValidationError(String.valueOf(input.getValue()));
 	    }
 	    if (now.get(Calendar.MONTH) + 1 >= month) {
 		throwError(VALIDATOR_INVALID_EXPIRATION_DATE);

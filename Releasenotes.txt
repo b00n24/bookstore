@@ -1,5 +1,5 @@
-Release-Notes für den Bookstore v1.0
-Datum: 14.11.2014
+﻿Release-Notes für den Bookstore v1.0
+Datum: 16.11.2014
 Autoren: Silvan Strüby und Adrian Wyssen
 ----------------
 
@@ -25,7 +25,7 @@ Special-Features:
 - Ajax-Call bei Warenkorb->Anzahl. Blur anstelle von keyup benutzt, damit der Focus im Feld bleibt und eine 2-stellige Zahl eingegeben werden kann. render="@all" anstelle von @form, damit auch die globale Fehlermeldung neu gerendert wird, falls ein nicht valider Wert eingegeben wird.
 - Project-Stage im web.xml von Development auf Production umgestellt
 - Neue Namespaces (xmlns.jcp.org anstelle von java.sun.com) benutzt, wo möglich.
-- Globale Error-Page für unerwartete Fehler (unterdrückung des Stacktraces)
-- Benutzen des Attributes "validatorMessage" sowie Überschreiben von Default-Messages verwendet.
-- Passwort Composite-Component: Passwort verifizierung mit 2-fach Eingabe mit AJAX-Verification
+- Globale Error-Page für unerwartete Fehler (Unterdrückung des Stacktraces)
+- Custom-Messages mit durch Benutzen des Attributes "validatorMessage" sowie Überschreiben von Default-Messages verwendet.
+- Passwort Composite-Component: Passwort Verifizierung mit 2-fach Eingabe des neuen Passworts und direkter Kontrolle, ob beide gleich sind mit einem AJAX call
 - Möglichkeit, das Passwort zu ändern.
